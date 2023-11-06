@@ -4,7 +4,7 @@ export async function GET() {
   let rollos = [];
 
   try {
-    rollos = await prisma.Rollo.findMany({
+    rollos = await prisma.rollo.findMany({
       include: {
         aserradero: {
           select: { nombre: true },
