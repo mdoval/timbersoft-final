@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Aserradero {
+  id  Int @id @default(autoincrement())
+  nombre String
+  users User[]
+  rollos Rollo[]
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  nombre  String?
+  aserradero Aserradero @relation(fields: [aserraderoId], references: [id])
+  aserraderoId Int
+}
+
+model Proveedor {
+  id  Int @id @default(autoincrement())
+  nombre String
+  rollos Rollo[]
+  transportistas Transportista[]
+}
+
+model Transportista {
+  id Int @id @default(autoincrement())
+  nombre String
+  proveedor Proveedor @relation(fields: [proveedorId], references: [id])
+  proveedorId Int
+  rollo Rollo[]  
+}
+
+model Categoria {
+  id  Int @id @default(autoincrement())
+  nombre String
+  rollos Rollo[]
+}
+
+model Destino {
+  id  Int @id @default(autoincrement())
+  nombre String
+  rollos Rollo[]
+}
+
+model Largo {
+  id  Int @id @default(autoincrement())
+  tamanio Decimal @db.Decimal(10,2)
+  rollo Rollo[]
+}
+
+model Rollo {
+  id Int @id @default(autoincrement())
+  aserradero Aserradero @relation(fields: [aserraderoId], references: [id])
+  aserraderoId Int
+  fechaIngreso  DateTime
+  remito Int
+  toneladas Decimal @db.Decimal(10,2)
+  unidades Int
+  tarifa Decimal @db.Decimal(10,2)
+  flete Decimal @db.Decimal(10,2)
+  largo Largo @relation(fields: [largoId], references: [id])
+  largoId Int
+  proveedor Proveedor @relation(fields: [proveedorId], references: [id])
+  proveedorId Int
+  precio Decimal @db.Decimal(10,2)
+  importe Decimal @db.Decimal(10,2)
+  transportista Transportista @relation(fields: [transportistaId], references: [id])
+  transportistaId Int
+  categoria Categoria @relation(fields: [categoriaId], references: [id])
+  categoriaId Int
+  destino Destino @relation(fields: [destinoId], references: [id])
+  destinoId Int
+}
