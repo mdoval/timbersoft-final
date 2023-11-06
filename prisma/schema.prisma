@@ -10,57 +10,57 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Aserradero {
+model aserradero {
   id  Int @id @default(autoincrement())
   nombre String
-  users User[]
-  rollos Rollo[]
+  users user[]
+  rollos rollo[]
 }
 
-model User {
+model user {
   id    Int     @id @default(autoincrement())
   email String  @unique
   nombre  String?
-  aserradero Aserradero @relation(fields: [aserraderoId], references: [id])
+  aserradero aserradero @relation(fields: [aserraderoId], references: [id])
   aserraderoId Int
 }
 
-model Proveedor {
+model proveedor {
   id  Int @id @default(autoincrement())
   nombre String
-  rollos Rollo[]
-  transportistas Transportista[]
+  rollos rollo[]
+  transportistas transportista[]
 }
 
-model Transportista {
+model transportista {
   id Int @id @default(autoincrement())
   nombre String
-  proveedor Proveedor @relation(fields: [proveedorId], references: [id])
+  proveedor proveedor @relation(fields: [proveedorId], references: [id])
   proveedorId Int
-  rollo Rollo[]  
+  rollo rollo[]  
 }
 
-model Categoria {
+model categoria {
   id  Int @id @default(autoincrement())
   nombre String
-  rollos Rollo[]
+  rollos rollo[]
 }
 
-model Destino {
+model destino {
   id  Int @id @default(autoincrement())
   nombre String
-  rollos Rollo[]
+  rollos rollo[]
 }
 
-model Largo {
+model largo {
   id  Int @id @default(autoincrement())
   tamanio Decimal @db.Decimal(10,2)
-  rollo Rollo[]
+  rollo rollo[]
 }
 
-model Rollo {
+model rollo {
   id Int @id @default(autoincrement())
-  aserradero Aserradero @relation(fields: [aserraderoId], references: [id])
+  aserradero aserradero @relation(fields: [aserraderoId], references: [id])
   aserraderoId Int
   fechaIngreso  DateTime
   remito Int
@@ -68,17 +68,17 @@ model Rollo {
   unidades Int
   tarifa Decimal @db.Decimal(10,2)
   flete Decimal @db.Decimal(10,2)
-  largo Largo @relation(fields: [largoId], references: [id])
+  largo largo @relation(fields: [largoId], references: [id])
   largoId Int
-  proveedor Proveedor @relation(fields: [proveedorId], references: [id])
+  proveedor proveedor @relation(fields: [proveedorId], references: [id])
   proveedorId Int
   precio Decimal @db.Decimal(10,2)
   importe Decimal @db.Decimal(10,2)
-  transportista Transportista @relation(fields: [transportistaId], references: [id])
+  transportista transportista @relation(fields: [transportistaId], references: [id])
   transportistaId Int
   factura String
-  categoria Categoria @relation(fields: [categoriaId], references: [id])
+  categoria categoria @relation(fields: [categoriaId], references: [id])
   categoriaId Int
-  destino Destino @relation(fields: [destinoId], references: [id])
+  destino destino @relation(fields: [destinoId], references: [id])
   destinoId Int
 }
