@@ -76,6 +76,7 @@ model Rollo {
   importe Decimal @db.Decimal(10,2)
   transportista Transportista @relation(fields: [transportistaId], references: [id])
   transportistaId Int
+  factura String
   categoria Categoria @relation(fields: [categoriaId], references: [id])
   categoriaId Int
   destino Destino @relation(fields: [destinoId], references: [id])

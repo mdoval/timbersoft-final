@@ -1,3 +1,36 @@
+import prisma from "@/db/prisma";
+
 export async function GET() {
-    return Response.json({message: "Mensaje salido de un Api"})
+  let rollos = [];
+
+  try {
+    rollos = await prisma.Rollo.findMany({
+      include: {
+        aserradero: {
+          select: { nombre: true },
+        },
+        largo: {
+            select: { tamanio: true }
+        },
+        proveedor: {
+            select: { nombre: true}
+        },
+        categoria: {
+            select: { nombre: true }
+        },
+        transportista: {
+            select: { nombre: true}
+        },
+        destino: {
+            select: { nombre: true}
+        }
+      },
+    });
+  } catch (error) {
+    console.error("Error al obtener Rollos:", error);
+  } finally {
+    await prisma.$disconnect(); // Cierra la conexión a la base de datos cuando hayas terminado
+  }
+
+  return Response.json(rollos);
 }
