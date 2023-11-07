@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { MiSessionProvider } from '@/app/components/MiSessionProvider'
 
 export const metadata: Metadata = {
   title: 'TimberSoft',
@@ -13,7 +14,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+      <MiSessionProvider>
+        {children}
+      </MiSessionProvider>
+      </body>
     </html>
   )
 }
