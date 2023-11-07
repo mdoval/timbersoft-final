@@ -4,7 +4,7 @@ import { BotonLogout } from '@/app/components/BotonLogout'
 
 export default async function Dashboard() {
   const { user } = await getServerSession(authOptions);
-  console.log(user);
+  //console.log(user);
   return (
     <div className="flex flex-col items-center">
       <h1 className="m-10">Dashboard</h1>
