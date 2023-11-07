@@ -62,7 +62,7 @@ model rollo {
   id Int @id @default(autoincrement())
   aserradero aserradero @relation(fields: [aserraderoId], references: [id])
   aserraderoId Int
-  fechaIngreso  DateTime
+  fechaIngreso DateTime
   remito Int
   toneladas Decimal @db.Decimal(10,2)
   unidades Int
