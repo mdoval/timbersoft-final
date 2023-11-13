@@ -25,6 +25,15 @@
   .boton1 { 
     @apply bg-blue-300 p-5 m-5
   }
+
+  .menu_header {
+    @apply bg-gray-800 p-2 cursor-pointer text-center hover:bg-gray-900 text-white  
+  }
+
+  .menu_item {
+    @apply p-3 cursor-pointer bg-gray-400 hover:bg-gray-500 text-white 
+  }
+
 }
 
 /*
