@@ -2,10 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   html {
-    @apply h-full w-full
+    @apply h-full w-full;
   }
 
   body {
@@ -13,27 +12,74 @@
   }
 
   h1 {
-    @apply text-3xl
+    @apply text-3xl;
   }
 
   h2 {
-    @apply text-2xl
+    @apply text-2xl;
   }
 }
 
 @layer components {
-  .boton1 { 
-    @apply bg-blue-300 p-5 m-5
+  .boton1 {
+    @apply bg-blue-300 p-5 m-5;
   }
 
   .menu_header {
-    @apply bg-gray-800 p-2 cursor-pointer text-center hover:bg-gray-900 text-white  
+    @apply bg-gray-800 p-2 cursor-pointer text-center hover:bg-gray-900 text-white;
   }
 
   .menu_item {
-    @apply p-3 cursor-pointer bg-gray-400 hover:bg-gray-500 text-white 
+    @apply p-3 cursor-pointer bg-gray-400 hover:bg-gray-500 text-white;
   }
 
+  .dashboard_main {
+    @apply bg-red-200 w-full h-full flex;
+  }
+
+  .dashboard_sidebar {
+    @apply bg-white w-1/6;
+  }
+
+  .dashboard_center {
+    @apply bg-gray-100 w-full h-full flex flex-col;
+  }
+
+  .dashboard_topbar {
+    @apply bg-blue-400 w-full h-16 text-white p-3
+  }
+
+  .dashboard_children {
+    @apply p-12 h-full;
+  }
+
+  .dashboard_header {
+    @apply /*bg-amber-500*/ w-full h-16 text-center font-light text-3xl p-3 border-y-2
+  }
+
+  .sidebar {
+    @apply w-full p-3 shadow-lg
+  }
+
+  .sidebar_menu {
+    @apply m-2 text-gray-600
+  }
+
+  .sidebar_item {
+    @apply /*bg-gray-200*/ p-3 cursor-pointer flex hover:text-blue-400 hover:font-bold
+  }
+
+  .sidebar_submenu {
+    @apply /*bg-gray-300*/ mx-3;
+  }
+
+  .sidebar_subitem {
+    @apply p-3 cursor-pointer hover:text-blue-400 hover:font-bold
+  }
+
+  .sidebar_icons {
+    @apply w-1/6 text-xl mr-2
+  }
 }
 
 /*
