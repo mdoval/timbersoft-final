@@ -1,20 +1,26 @@
-import { MainNavBar } from '@/app/components/MainBar/MainNavBar'
+import { MainNavBar } from "@/app/components/MainBar/MainNavBar";
+import { SideBar } from "../components/SideBar/SideBar";
+import TopBar from "@/app/components/TopBar/TopBar";
 
 export default function DashboardLayout({
-  children, // will be a page or nested layout
+  children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <section className='w-full h-full'>
-      <div className='flex w-full h-full'>
-        <div className='w-1/6 bg-gray-700'>
-          <MainNavBar />
+    <section className="dashboard_main">
+      <div className="dashboard_sidebar">
+        <div className="dashboard_header">
+          <span>TimberSoft</span>
         </div>
-        <div className='w-full'>
-          {children}
+        <SideBar />
+      </div>
+      <div className="dashboard_center">
+        <div className="dashboard_topbar">
+          <TopBar />
         </div>
+        <div className="dashboard_children">{children}</div>
       </div>
     </section>
-  )
+  );
 }

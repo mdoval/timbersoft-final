@@ -46,7 +46,15 @@
   }
 
   .dashboard_topbar {
-    @apply bg-blue-400 w-full h-16 text-white p-3
+    @apply bg-blue-400 w-full h-20 text-white p-3 flex flex-row-reverse
+  }
+
+  .dashboard_topbar_imagen {
+    @apply cursor-pointer mt-2
+  }
+
+  .dashboard_topbar_menucuenta {
+    @apply bg-gray-200 rounded-lg m-4 fixed right-0 shadow-lg text-black border border-gray-200 text-center cursor-pointer
   }
 
   .dashboard_children {
@@ -54,7 +62,7 @@
   }
 
   .dashboard_header {
-    @apply /*bg-amber-500*/ w-full h-16 text-center font-light text-3xl p-3 border-y-2
+    @apply /*bg-amber-500*/ w-full h-20 text-center font-light text-3xl p-3 border-y-2
   }
 
   .sidebar {
@@ -80,6 +88,8 @@
   .sidebar_icons {
     @apply w-1/6 text-xl mr-2
   }
+
+
 }
 
 /*

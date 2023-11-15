@@ -19,7 +19,7 @@ export default async function Page() {
   const rollos = await getData();
 
   return (
-    <div className="flex flex-col h-full w-full">
+    <div className="bg-white w-full h-5/6 shadow-lg p-4 rounded-lg overflow-auto">
       <h1>Tabla de Rollos</h1>
       <hr></hr>
       <DataTable columns={columns} data={rollos} />

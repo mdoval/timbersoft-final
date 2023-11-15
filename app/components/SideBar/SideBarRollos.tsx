@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { GiWoodPile } from "react-icons/gi";
 
 export function SideBarRollos() {
@@ -6,7 +7,7 @@ export function SideBarRollos() {
       <div className="sidebar_item">
         <div className="w-full flex">
           <GiWoodPile className="sidebar_icons" />
-          <span>Rollos</span>
+          <Link href="/dashboard/rollos">Rollos</Link>
         </div>
       </div>
     </div>

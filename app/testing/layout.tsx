@@ -1,6 +1,6 @@
 import { MainNavBar } from "@/app/components/MainBar/MainNavBar";
 import { SideBar } from "../components/SideBar/SideBar";
-import { TopBar } from "../components/TopBar/TopBar";
+import TopBar  from "../components/TopBar/TopBar";
 
 export default function TestingLayout({
   children,
