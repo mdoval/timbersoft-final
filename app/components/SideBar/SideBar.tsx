@@ -6,10 +6,10 @@ import { SideBarTablas } from "./SideBarTablas";
 export function SideBar() {
   return (
     <div className="sidebar">
-      <SideBarProduccion />
       <SideBarInicio />
       <SideBarTablas />
       <SideBarRollos />
+      <SideBarProduccion />
     </div>
   );
 }
