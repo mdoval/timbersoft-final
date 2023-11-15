@@ -14,7 +14,6 @@ model aserradero {
   id  Int @id @default(autoincrement())
   nombre String
   users user[]
-  remitos remito[]
   rollos rollo[]
 }
 
@@ -26,33 +25,19 @@ model user {
   aserraderoId Int
 }
 
-model remito {
-  id Int @id @default(autoincrement())
-  fechaIngreso DateTime
-  remito Int
-  proveedor proveedor @relation(fields: [proveedorId], references: [id])
-  proveedorId Int
-  transportista transportista @relation(fields: [transportistaId], references: [id])
-  transportistaId Int
-  destino destino @relation(fields: [destinoId], references: [id])
-  destinoId Int
-  tarifa Decimal @db.Decimal(10,2)
-  flete Decimal @db.Decimal(10,2)
-  factura String
-  aserradero aserradero @relation(fields: [aserraderoId], references: [id])
-  aserraderoId Int
-}
-
 model proveedor {
   id  Int @id @default(autoincrement())
   nombre String
-  remitos remito[]
+  rollos rollo[]
+  transportistas transportista[]
 }
 
 model transportista {
   id Int @id @default(autoincrement())
   nombre String
-  remitos remito[]  
+  proveedor proveedor @relation(fields: [proveedorId], references: [id])
+  proveedorId Int
+  rollo rollo[]  
 }
 
 model categoria {
@@ -64,7 +49,7 @@ model categoria {
 model destino {
   id  Int @id @default(autoincrement())
   nombre String
-  remitos remito[]
+  rollos rollo[]
 }
 
 model largo {
@@ -75,14 +60,25 @@ model largo {
 
 model rollo {
   id Int @id @default(autoincrement())
-  categoria categoria @relation(fields: [categoriaId], references: [id])
-  categoriaId Int
-  largo largo @relation(fields: [largoId], references: [id])
-  largoId Int
-  toneladas Decimal @db.Decimal(10,2)
-  unidades Int
-  precio Decimal @db.Decimal(10,2)
-  importe Decimal @db.Decimal(10,2)
   aserradero aserradero @relation(fields: [aserraderoId], references: [id])
   aserraderoId Int
+  fechaIngreso DateTime
+  remito Int
+  toneladas Decimal @db.Decimal(10,2)
+  unidades Int
+  tarifa Decimal @db.Decimal(10,2)
+  flete Decimal @db.Decimal(10,2)
+  largo largo @relation(fields: [largoId], references: [id])
+  largoId Int
+  proveedor proveedor @relation(fields: [proveedorId], references: [id])
+  proveedorId Int
+  precio Decimal @db.Decimal(10,2)
+  importe Decimal @db.Decimal(10,2)
+  transportista transportista @relation(fields: [transportistaId], references: [id])
+  transportistaId Int
+  factura String
+  categoria categoria @relation(fields: [categoriaId], references: [id])
+  categoriaId Int
+  destino destino @relation(fields: [destinoId], references: [id])
+  destinoId Int
 }
