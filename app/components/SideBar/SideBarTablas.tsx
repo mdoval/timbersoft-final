@@ -4,6 +4,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 import { useState } from 'react'
 import { CiViewTable } from "react-icons/ci";
+import Link from "next/link";
 
 export function SideBarTablas() {
   const [hidden, setHidden] = useState(true)
@@ -22,6 +23,7 @@ export function SideBarTablas() {
         </div>
       </div>
       <div className="sidebar_submenu" hidden={hidden}>
+        <Link href="/dashboard/proveedores" className="sidebar_subitem">Proveedores</Link>
         <div className="sidebar_subitem">Destinos</div>
         <div className="sidebar_subitem">Categorias</div>
         <div className="sidebar_subitem">Transportista</div>
