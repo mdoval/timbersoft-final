@@ -11,5 +11,5 @@ export function SideBar() {
       <SideBarRollos />
       <SideBarProduccion />
     </div>
-  );
+  )
 }
