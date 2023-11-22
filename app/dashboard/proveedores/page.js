@@ -18,19 +18,16 @@ const form =
 const guardarProveedor = async (formulario)  => {
   console.log(formulario)
   
-  /*const res = await fetch('https://data.mongodb-api.com/...', {
+  const res = await fetch('http://localhost:3000/api/proveedores/add', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'API-Key': process.env.DATA_API_KEY,
     },
-    body: JSON.stringify({ time: new Date().toISOString() }),
+    body: JSON.stringify(formulario.data),
   })
  
   const data = await res.json()
-*/
-
-  return NextResponse.json({message: "Anda"})
+  return NextResponse.json(data)
 }
 
 export default function ProveedoresPage() {
