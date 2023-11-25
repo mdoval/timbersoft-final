@@ -33,7 +33,7 @@ export async function PUT(request, { params }) {
       where: { 
         id: proveedorId
       }, 
-      data: { data }     
+      data 
     });
     return NextResponse.json({ proveedor });
   } catch (error) {

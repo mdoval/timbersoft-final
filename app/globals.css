@@ -58,7 +58,7 @@
   }
 
   .dashboard_children {
-    @apply p-12 h-full;
+    @apply p-8 h-full;
   }
 
   .dashboard_header {
