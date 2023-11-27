@@ -1,10 +1,16 @@
 import prisma from "@/db/prisma";
 import { NextResponse } from "next/server";
 
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/utils/authOptions";
+
 export async function GET( request ) {
+    const session = await getServerSession(authOptions);    
+    console.log("Mi Session "+JSON.stringify(session))
+    
     try {
-        const users = await prisma.user.findMany()
-        return NextResponse.json(users)        
+        const proveedores = await prisma.proveedor.findMany()
+        return NextResponse.json(proveedores)        
     } catch (error) {
         console.log(error)
     }
