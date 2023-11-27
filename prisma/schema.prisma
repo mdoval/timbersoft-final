@@ -21,7 +21,7 @@ model aserradero {
 model user {
   id    Int     @id @default(autoincrement())
   email String  @unique
-  nombre  String?
+  name  String?
   aserradero aserradero @relation(fields: [aserraderoId], references: [id])
   aserraderoId Int
 }

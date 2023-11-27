@@ -1,4 +1,4 @@
-import { IProveedor } from "@/types/proveedor"
+import { IProveedor } from "@/types/tipos"
 import EditProveedor from "../Buttons/EditProveedor";
 import DeleteProveedor from "../Buttons/DeleteProveedor";
 

@@ -1,4 +1,6 @@
 import Auth0Provider from "next-auth/providers/auth0";
+import { loginUser } from "./usersFunctions";
+import { IUser } from "@/types/tipos";
 
 export const authOptions = {
   providers: [
@@ -18,7 +20,9 @@ export const authOptions = {
     async signIn({ user, account, profile, email, credentials }) {
       const isAllowedToSignIn = true
       if (isAllowedToSignIn) {
-        console.log("Usuario Logueado")
+        //console.log("Usuario Logueado")
+        //console.log(user)
+        loginUser(user)      
         return true
       } else {
           console.log("Error de Login")

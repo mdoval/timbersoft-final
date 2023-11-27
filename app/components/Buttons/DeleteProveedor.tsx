@@ -1,6 +1,6 @@
 'use client'
 
-import { IProveedor } from "@/types/proveedor";
+import { IProveedor } from "@/types/tipos";
 import { FiDelete } from "react-icons/fi";
 import Modal from "../Modal/Modal";
 import { useState } from "react";

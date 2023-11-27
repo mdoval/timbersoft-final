@@ -4,7 +4,7 @@ import { FormEventHandler, useState } from "react";
 import Modal from "@/app/components/Modal/Modal";
 import { useRouter } from "next/navigation";
 import { addProveedor } from "@/utils/proveedoresFunctions";
-import { IProveedor } from "@/types/proveedor";
+import { IProveedor } from "@/types/tipos";
 
 export function AddProveedor() {
   const router = useRouter()

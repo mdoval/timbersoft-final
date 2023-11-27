@@ -1,8 +1,11 @@
-import { IProveedor } from "@/types/proveedor";
+import { IProveedor } from "@/types/tipos";
 
 export const getAllProveedores = async () => {
   const url = `${process.env.siteUrl}/api/proveedores`;
-  const res = await fetch(url, { cache: "no-store" });
+  const res = await fetch(url, 
+    {
+      cache: "no-store",
+    });
   return res.json();
 };
 

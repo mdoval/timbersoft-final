@@ -1,4 +1,4 @@
-import { IProveedor } from "@/types/proveedor";
+import { IProveedor } from "@/types/tipos";
 import ItemProveedor from "@/app/components/DataTable/ItemProveedor";
 
 interface ProveedoresListProps {

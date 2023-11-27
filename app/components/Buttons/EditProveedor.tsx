@@ -1,7 +1,7 @@
 "use client"
 
 import { FiEdit } from "react-icons/fi";
-import { IProveedor } from "@/types/proveedor";
+import { IProveedor } from "@/types/tipos";
 import { FormEventHandler, useState } from "react";
 import { editProveedor } from "@/utils/proveedoresFunctions";
 import Modal from "../Modal/Modal";

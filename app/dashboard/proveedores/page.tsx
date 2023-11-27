@@ -1,10 +1,9 @@
-import { getAllProveedores } from "@/utils/proveedoresFunctions";
+import { getAllProveedoresToken } from "@/utils/getAllProveedoresToken";
 import ProveedoresList from "@/app/components/DataTable/ProveedoresList";
 import { AddProveedor } from "@/app/components/Buttons/AddProveedor";
 
-
 export default async function ProveedoresPage() {
-  const proveedores = await getAllProveedores();
+  const proveedores = await getAllProveedoresToken();
 
   return (
     <div className="w-full h-full flex flex-col bg-white shadow-lg" >
