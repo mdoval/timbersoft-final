@@ -1,6 +1,5 @@
 import Auth0Provider from "next-auth/providers/auth0";
 import { loginUser } from "./usersFunctions";
-import { IUser } from "@/types/tipos";
 
 export const authOptions = {
   providers: [
@@ -20,18 +19,12 @@ export const authOptions = {
     async signIn({ user, account, profile, email, credentials }) {
       const isAllowedToSignIn = true
       if (isAllowedToSignIn) {
-        //console.log("Usuario Logueado")
-        //console.log(user)
-        loginUser(user)      
+//        console.log(user)
         return true
       } else {
           console.log("Error de Login")
-        // Return false to display a default error message
         return false        
-        // Or you can return a URL to redirect to:
-        // return '/unauthorized'
       }
     }
   }
-  
 };

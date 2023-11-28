@@ -15,7 +15,9 @@ import { IUser } from "@/types/tipos";
   };
 
   export const loginUser = async (user: IUser): Promise<IUser> => {
-    console.log(user)
+//    console.log(user)
+//    user.aserraderoId = 1
+//    console.log(user)
     const url = `${process.env.siteUrl}/api/users/${user.email}`
     const res = await fetch(url, {cache: 'no-store'})
     const usuario = await res.json()
