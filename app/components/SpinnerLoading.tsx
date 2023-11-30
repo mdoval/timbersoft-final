@@ -1,4 +1,4 @@
-export default async function TestingPage() {
+export function SpinnerLoading() {
   return (
     <div className="w-full h-full flex flex-col bg-white shadow-lg">
       <div className="h-full text-center align-middle">
