@@ -19,7 +19,10 @@ export const authOptions = {
     async signIn({ user, account, profile, email, credentials }) {
       const isAllowedToSignIn = true
       if (isAllowedToSignIn) {
-//        console.log(user)
+        //user = {...user, asseraderoId: 1}
+        Object.assign(user,{asseraderoId: 1})
+        console.log(profile)
+        loginUser(user)
         return true
       } else {
           console.log("Error de Login")

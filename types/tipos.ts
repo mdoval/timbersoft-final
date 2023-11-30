@@ -13,3 +13,8 @@ export interface IAserradero {
     id: number,
     nombre: string    
 }
+
+export interface ICategoria {
+    id?: number,
+    nombre: string
+}
