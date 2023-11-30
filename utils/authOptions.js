@@ -21,7 +21,7 @@ export const authOptions = {
       if (isAllowedToSignIn) {
         //user = {...user, asseraderoId: 1}
         Object.assign(user,{asseraderoId: 1})
-        console.log(profile)
+        //console.log(profile)
         loginUser(user)
         return true
       } else {

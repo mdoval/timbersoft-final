@@ -1,14 +1,5 @@
 import { IProveedor } from "@/types/tipos";
 
-export const getAllProveedores = async () => {
-  const url = `${process.env.siteUrl}/api/proveedores`;
-  const res = await fetch(url, 
-    {
-      cache: "no-store",
-    });
-  return res.json();
-};
-
 export const addProveedor = async ( proveedor: IProveedor): Promise<IProveedor> => {
   const newProveedor = await fetch(`${process.env.siteUrl}/api/proveedores/add`,
     {

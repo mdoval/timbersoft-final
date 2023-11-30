@@ -82,7 +82,7 @@
   }
 
   .sidebar_subitem {
-    @apply p-3 cursor-pointer hover:text-blue-400 hover:font-bold
+    @apply p-3 cursor-pointer hover:text-blue-400 hover:font-bold 
   }
 
   .sidebar_icons {

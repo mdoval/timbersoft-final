@@ -1,18 +1,18 @@
-import { getAllProveedoresToken } from "@/utils/getAllProveedoresToken";
-import ProveedoresList from "@/app/components/DataTable/ProveedoresList";
-import { AddProveedor } from "@/app/components/Buttons/AddProveedor";
+import { getCategorias } from "@/utils/getCategorias";
+import CategoriasList from "@/app/components/DataTable/CategoriasList";
+import { AddCategoria } from "@/app/components/Buttons/AddCategoria";
 
 export default async function ProveedoresPage() {
-  const proveedores = await getAllProveedoresToken();
+  const categorias = await getCategorias();
 
   return (
     <div className="w-full h-full flex flex-col bg-white shadow-lg" >
-      <h1 className="p-3">Proveedores</h1>
+      <h1 className="p-3">Categorias</h1>
       <div className="p-2">
-        <AddProveedor />
+        <AddCategoria />
       </div>
       <div>
-        <ProveedoresList proveedores={proveedores} />
+        <CategoriasList categorias={categorias} />
       </div>
     </div>
   );

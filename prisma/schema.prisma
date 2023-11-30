@@ -18,6 +18,7 @@ model aserradero {
   rollos rollo[]
   proveedores proveedor[]
   categorias categoria[]
+  destinos destino[]
 }
 
 model user {
@@ -71,6 +72,8 @@ model destino {
   id  Int @id @default(autoincrement())
   nombre String
   remitos remito[]
+  aserradero aserradero @relation(fields: [aserraderoId], references: [id])
+  aserraderoId Int  
 }
 
 model largo {

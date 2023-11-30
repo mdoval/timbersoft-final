@@ -3,16 +3,16 @@ import EditCategoria from "../Buttons/EditCategoria";
 import DeleteCategoria from "../Buttons/DeleteCategoria";
 
 interface CategoriaProps {
-    proveedor: ICategoria
+    categoria: ICategoria
 }
 
-const ItemCategoria: React.FC<CategoriaProps> = ({proveedor}) => {
+const ItemCategoria: React.FC<CategoriaProps> = ({categoria}) => {
   return (
     <tr className="hover" >
-      <td>{proveedor.nombre}</td>
+      <td>{categoria.nombre}</td>
       <td className="flex gap-2"> 
-        <EditCategoria proveedor={proveedor} />
-        <DeleteCategoria proveedor={proveedor} />
+        <EditCategoria categoria={categoria} />
+        <DeleteCategoria categoria={categoria} />
       </td>
     </tr>
   )

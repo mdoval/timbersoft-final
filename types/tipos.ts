@@ -18,3 +18,8 @@ export interface ICategoria {
     id?: number,
     nombre: string
 }
+
+export interface IDestino {
+    id?: number,
+    nombre: string
+}

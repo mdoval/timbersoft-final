@@ -1,32 +1,30 @@
 "use client"
 
 import { FiEdit } from "react-icons/fi";
-import { IProveedor } from "@/types/tipos";
+import { IDestino } from "@/types/tipos";
 import { FormEventHandler, useState } from "react";
-import { editProveedor } from "@/utils/proveedoresFunctions";
+import { editCategoria } from "@/utils/categoriasFunctions";
 import Modal from "../Modal/Modal";
 import { useRouter } from "next/navigation";
 
-interface EditProveedorProps {
-  proveedor: IProveedor;
+interface EditDestinoProps {
+    destino: IDestino;
 }
 
-const EditProveedor: React.FC<EditProveedorProps> = ({ proveedor }) => {
+const EditDestino: React.FC<EditDestinoProps> = ({ destino }) => {
   const router = useRouter();
   const [openModalEdit, setOpenModalEdit] = useState(false);
-  const [proveedorToEdit, setProveedorToEdit] = useState<IProveedor>(proveedor);
+  const [destinoToEdit, setDestinoToEdit] = useState<IDestino>(destino);
 
-  const handleSubmitEditProveedor: FormEventHandler<HTMLFormElement> = async (e) => {
+  const handleSubmitEditDestino: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    //console.log(proveedorToEdit)
-    await editProveedor(proveedorToEdit);
-    //setProveedorToEdit()
+    await editCategoria(destinoToEdit);
     setOpenModalEdit(false);
     router.refresh();
   };
 
   const handleChange = (nombre: string) => {
-    setProveedorToEdit({...proveedorToEdit, nombre: nombre });
+    setDestinoToEdit({...destinoToEdit, nombre: nombre });
   };
 
   return (
@@ -39,14 +37,14 @@ const EditProveedor: React.FC<EditProveedorProps> = ({ proveedor }) => {
       />
 
       <Modal modalOpen={openModalEdit} setModalOpen={setOpenModalEdit}>
-        <form onSubmit={handleSubmitEditProveedor}>
-          <h3 className="font-bold text-lg">Editar Proveedor</h3>
+        <form onSubmit={handleSubmitEditDestino}>
+          <h3 className="font-bold text-lg">Editar Destino</h3>
           <div className="modal-action">
             <input
-              value={proveedorToEdit.nombre}
+              value={destinoToEdit.nombre}
               onChange={e => handleChange(e.target.value)}
               type="text"
-              placeholder="Nombre del proveedor"
+              placeholder="Nombre de categoria"
               className="input input-bordered w-full"
             />
             <button type="submit" className="btn">
@@ -59,4 +57,4 @@ const EditProveedor: React.FC<EditProveedorProps> = ({ proveedor }) => {
   );
 };
 
-export default EditProveedor;
+export default EditDestino;

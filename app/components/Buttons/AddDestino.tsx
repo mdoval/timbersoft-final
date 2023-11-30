@@ -3,39 +3,39 @@
 import { FormEventHandler, useState } from "react";
 import Modal from "@/app/components/Modal/Modal";
 import { useRouter } from "next/navigation";
-import { addCategoria } from "@/utils/categoriasFunctions";
-import { ICategoria } from "@/types/tipos";
+import { addDestino } from "@/utils/destinosFunctions";
+import { IDestino } from "@/types/tipos";
 
-export function AddCategoria() {
+export function AddDestino() {
   const router = useRouter()
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [newCategoria, setNewCategoria] = useState<ICategoria>({nombre: ""})
+  const [newDestino, setNewDestino] = useState<IDestino>({nombre: ""})
 
-  const handleSubmitNewCategoria: FormEventHandler<HTMLFormElement> = async (e) => {
+  const handleSubmitnewDestino: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()
-    await addCategoria(newCategoria)
-    console.log(newCategoria)
-    setNewCategoria({nombre: ""})
+    await addDestino(newDestino)
+    console.log(newDestino)
+    setNewDestino({nombre: ""})
     setModalOpen(false)
     router.refresh()
   }
 
   const handleChange = (nombre: string) => {
-    setNewCategoria({nombre: nombre})
+    setNewDestino({nombre: nombre})
   }
 
   return (
     <div>
-      <button className="btn btn-primary" onClick={() => setModalOpen(true)}>Crear Categoria</button>
+      <button className="btn btn-primary" onClick={() => setModalOpen(true)}>Crear Destino</button>
       <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
-        <form onSubmit={handleSubmitNewCategoria}>
-            <h3 className="font-bold text-lg">Agregar Categoria</h3>
+        <form onSubmit={handleSubmitnewDestino}>
+            <h3 className="font-bold text-lg">Agregar Destino</h3>
             <div className="modal-action">
               <input
-                value={newCategoria.nombre}
+                value={newDestino.nombre}
                 onChange={e => handleChange(e.target.value)}
                 type="text"
-                placeholder="Nombre de Categoria"
+                placeholder="Nombre de destino"
                 className="input input-bordered w-full"
               />
               <br />

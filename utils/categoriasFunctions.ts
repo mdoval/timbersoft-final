@@ -1,43 +1,34 @@
 import { ICategoria } from "@/types/tipos";
 
-export const getAllCategoriaICategoriaes = async () => {
-  const url = `${process.env.siteUrl}/api/CategoriaICategoriaes`;
-  const res = await fetch(url, 
-    {
-      cache: "no-store",
-    });
-  return res.json();
-};
-
-export const addCategoriaICategoria = async ( CategoriaICategoria: ICategoria): Promise<ICategoria> => {
-  const newCategoriaICategoria = await fetch(`${process.env.siteUrl}/api/CategoriaICategorias/add`,
+export const addCategoria = async ( categoria: ICategoria): Promise<ICategoria> => {
+  const newCategoria = await fetch(`${process.env.siteUrl}/api/categorias/add`,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(CategoriaICategoria),
+      body: JSON.stringify(categoria),
     }
   );
-  return newCategoriaICategoria.json();
+  return newCategoria.json();
 };
 
-export const editCategoriaICategoria = async ( CategoriaICategoria: ICategoria): Promise<ICategoria> => {
-  const updatedCategoriaICategoria = await fetch(`${process.env.siteUrl}/api/CategoriaICategoriaes/${CategoriaICategoria.id}`,
+export const editCategoria = async ( categoria: ICategoria): Promise<ICategoria> => {
+  const updatedCategoria = await fetch(`${process.env.siteUrl}/api/categorias/${categoria.id}`,
     {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(CategoriaICategoria),
+      body: JSON.stringify(categoria),
     }
   );
-  return updatedCategoriaICategoria.json();
+  return updatedCategoria.json();
 };
 
-export const deleteCategoriaICategoria = async ( CategoriaICategoria: ICategoria): Promise<ICategoria> => {
-  const deletedCategoriaICategoria = await fetch(`${process.env.siteUrl}/api/CategoriaICategoriaes/${CategoriaICategoria.id}`, {
+export const deleteCategoria = async ( categoria: ICategoria): Promise<ICategoria> => {
+  const deletedCategoria = await fetch(`${process.env.siteUrl}/api/categorias/${categoria.id}`, {
     method: "DELETE",
   });
-  return  deletedCategoriaICategoria.json()
+  return  deletedCategoria.json()
 };
