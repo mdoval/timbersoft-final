@@ -23,3 +23,18 @@ export interface IDestino {
     id?: number,
     nombre: string
 }
+
+export interface ITransportista {
+    id?: number,
+    nombre: string
+}
+
+export interface ICalidad {
+    id?: number,
+    nombre: string
+}
+
+export interface ILargo {
+    id?: number,
+    tamanio: number
+}

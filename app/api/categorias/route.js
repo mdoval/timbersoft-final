@@ -21,7 +21,6 @@ export async function GET( request ) {
               },
             },
           });
-          console.log(user)
 
           if (user) {
             categoriasDelAserradero = user.aserradero?.categorias;

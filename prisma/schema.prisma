@@ -19,6 +19,9 @@ model aserradero {
   proveedores proveedor[]
   categorias categoria[]
   destinos destino[]
+  largos largo[]
+  calidades calidad[]
+  transportistas transportista[]
 }
 
 model user {
@@ -57,7 +60,9 @@ model proveedor {
 model transportista {
   id Int @id @default(autoincrement())
   nombre String
-  remitos remito[]  
+  remitos remito[] 
+  aserradero aserradero @relation(fields: [aserraderoId], references: [id])
+  aserraderoId Int
 }
 
 model categoria {
@@ -80,18 +85,30 @@ model largo {
   id  Int @id @default(autoincrement())
   tamanio Decimal @db.Decimal(10,2)
   rollo rollo[]
+  aserradero aserradero @relation(fields: [aserraderoId], references: [id])
+  aserraderoId Int
 }
 
 model rollo {
   id Int @id @default(autoincrement())
   categoria categoria @relation(fields: [categoriaId], references: [id])
   categoriaId Int
+  calidad calidad @relation(fields: [calidadId], references: [id])
+  calidadId Int
   largo largo @relation(fields: [largoId], references: [id])
   largoId Int
   toneladas Decimal @db.Decimal(10,2)
   unidades Int
   precio Decimal @db.Decimal(10,2)
   importe Decimal @db.Decimal(10,2)
+  aserradero aserradero @relation(fields: [aserraderoId], references: [id])
+  aserraderoId Int
+}
+
+model calidad {
+  id  Int @id @default(autoincrement())
+  nombre String
+  rollos rollo[]
   aserradero aserradero @relation(fields: [aserraderoId], references: [id])
   aserraderoId Int
 }

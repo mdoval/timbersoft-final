@@ -8,26 +8,27 @@ export async function GET( request ) {
     const session = await getServerSession(authOptions);    
     const userEmail = session.user.email
     //const allow = await isUserAllow(userEmail, 1)
-    let destinosDelAserradero = []
+
+    let transportistasDelAserradero = []
     
     try {
         const user = await prisma.user.findUnique({
             where: { email: userEmail },
             include: {
               aserradero: {
-                include: { destinos: true },
+                include: { transportistas: true },
               },
             },
           });
 
           if (user) {
-            destinosDelAserradero = user.aserradero?.destinos;
+            transportistasDelAserradero = user.aserradero?.transportistas;
             //console.log("Proveedores asociados al aserradero del usuario:", proveedoresDelAserradero);
           } else {
             console.log("Usuario no encontrado");
           }
 
-        return NextResponse.json(destinosDelAserradero)        
+        return NextResponse.json(transportistasDelAserradero)        
     } catch (error) {
         console.log(error)
     }

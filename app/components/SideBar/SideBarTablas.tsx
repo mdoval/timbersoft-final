@@ -38,8 +38,15 @@ export function SideBarTablas() {
             Categorias
           </Link>
           <div className="sidebar_subitem">Transportista</div>
-          <div className="sidebar_subitem">Calidad</div>
-          <div className="sidebar_subitem">Largos</div>
+          <Link href="/dashboard/calidades" className="sidebar_subitem">
+            Calidades
+          </Link>
+          <Link href="/dashboard/transportistas" className="sidebar_subitem">
+            Transportistas
+          </Link>
+          <Link href="/dashboard/largos" className="sidebar_subitem">
+            Largos
+          </Link>
         </div>
       </div>
     </div>
