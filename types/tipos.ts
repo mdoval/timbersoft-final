@@ -38,3 +38,8 @@ export interface ILargo {
     id?: number,
     tamanio: number
 }
+
+export interface IRemito {
+    id?: number,
+    fechaIngreso: string
+}
