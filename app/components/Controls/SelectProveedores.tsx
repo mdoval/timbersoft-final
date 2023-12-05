@@ -1,11 +1,11 @@
 "use client";
 
 import { IProveedor } from "@/types/tipos";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 interface SelectProveedoresProps {
   proveedorId: number;
-  onSelectionChange: (event: React.ChangeEventHandler<HTMLSelectElement>) => void
+  onSelectionChange: (event: ChangeEvent<HTMLSelectElement>) => void
 }
 
 const SelectProveedores: React.FC<SelectProveedoresProps> = ({
@@ -24,16 +24,12 @@ const SelectProveedores: React.FC<SelectProveedoresProps> = ({
       .catch((error) => console.error("Error al obtener proveedores:", error));
   }, []); // El segundo argumento vacío asegura que la llamada a la API solo se realice una vez al montar el componente
 
-  /*const handleChange = () => {
-    console.log(proveedor);
-  };
-*/
   return (
-    <label className="form-control w-full max-w-xs">
+    <label className="form-control w-full max-w-md">
       <div className="label">
         <span className="label-text">Seleccione un Proveedor</span>
       </div>
-      <select className="select select-bordered" value={proveedorId} onChange={onSelectionChange}>
+      <select className="select select-bordered" value={proveedorId} onChange={onSelectionChange} >
         {proveedores.map((proveedor) => {
           return (
             <option key={proveedor.id} value={proveedor.id}>

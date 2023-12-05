@@ -4,6 +4,7 @@ import ModalLg from "@/app/components/Modal/ModalLg";
 import { IRemito } from "@/types/tipos";
 import { FormEventHandler, useState, useEffect } from "react";
 import SelectProveedores from "../Controls/SelectProveedores";
+import SelectDestinos from "../Controls/SelectDestinos";
 
 export function AddIngresoMP() {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -31,18 +32,13 @@ export function AddIngresoMP() {
     e
   ) => {
     e.preventDefault();
-    console.log(newRemito)
+    console.log(newRemito);
     /*await addCalidad(newCalidad)
     console.log(newCalidad)
     setNewCalidad({nombr/e: ""})*/
     //setModalOpen(false);
     //router.refresh()*/
   };
-
-  //const handleChange = (fecha: string) => {
-  //console.log(fecha)
-  //    setNewRemito({fechaIngreso: fecha})
-  //  }
 
   return (
     <div>
@@ -54,7 +50,7 @@ export function AddIngresoMP() {
           <h3 className="font-bold text-lg">Ingreso de Materia Prima</h3>
           <div className="modal-action">
             <div className="w-full flex flex-col">
-              <div className="flex">
+              <div className="flex w-full">
                 {/* Fecha de remito /*/}
                 <label className="form-control w-full max-w-xs">
                   <div className="label">
@@ -98,9 +94,28 @@ export function AddIngresoMP() {
                     <span className="label-text-alt">Error</span>
                   </div>
                 </label>
-
+              </div>
+              <div className="flex w-full">
                 {/* Proveedor */}
-                <SelectProveedores proveedorId={newRemito.proveedorId} onChange={(e) => setNewRemito({...newRemito, proveedorId: e.target.value})} />
+                <SelectProveedores
+                  proveedorId={newRemito.proveedorId}
+                  onSelectionChange={(e) =>
+                    setNewRemito({
+                      ...newRemito,
+                      proveedorId: Number(e.target.value),
+                    })
+                  }
+                />
+                {/* Proveedor */}
+                <SelectDestinos
+                  destinoId={newRemito.destinoId}
+                  onSelectionChange={(e) =>
+                    setNewRemito({
+                      ...newRemito,
+                      destinoId: Number(e.target.value),
+                    })
+                  }
+                />
               </div>
               <br />
               <div>
