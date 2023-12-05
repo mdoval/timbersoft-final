@@ -41,5 +41,11 @@ export interface ILargo {
 
 export interface IRemito {
     id?: number,
-    fechaIngreso: string
+    fechaIngreso: string,
+    remito: number,
+    proveedorId: number,
+    transportistaId: number,
+    destinoId: number,
+    tarifa: number,
+    flete: number
 }
