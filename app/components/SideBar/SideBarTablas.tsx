@@ -37,7 +37,6 @@ export function SideBarTablas() {
           <Link href="/dashboard/categorias" className="sidebar_subitem">
             Categorias
           </Link>
-          <div className="sidebar_subitem">Transportista</div>
           <Link href="/dashboard/calidades" className="sidebar_subitem">
             Calidades
           </Link>
