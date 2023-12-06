@@ -2,11 +2,18 @@
 
 import ModalLg from "@/app/components/Modal/ModalLg";
 import { IRemito } from "@/types/tipos";
-import { FormEventHandler, useState, useEffect } from "react";
+import { FormEventHandler, useState } from "react";
 import SelectProveedores from "../Controls/SelectProveedores";
 import SelectDestinos from "../Controls/SelectDestinos";
+import SelectTransportistas from "../Controls/SelectTransportistas";
+import InputFecha from "../Controls/InputFecha";
+import InputNumber from "../Controls/InputNumber";
+import { addRemito } from "@/utils/remitosFunctions";
+import { useRouter } from "next/navigation";
+import InputText from "../Controls/InputText";
 
 export function AddIngresoMP() {
+  const router = useRouter()
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [newRemito, setNewRemito] = useState<IRemito>({
     id: 1,
@@ -17,6 +24,7 @@ export function AddIngresoMP() {
     destinoId: 0,
     tarifa: 0,
     flete: 0,
+    factura: ""
   });
 
   function obtenerFechaFormateada(): string {
@@ -32,13 +40,13 @@ export function AddIngresoMP() {
     e
   ) => {
     e.preventDefault();
-    console.log(newRemito);
-    /*await addCalidad(newCalidad)
-    console.log(newCalidad)
-    setNewCalidad({nombr/e: ""})*/
-    //setModalOpen(false);
-    //router.refresh()*/
-  };
+    //console.log(newRemito);
+    const remitoAgregado = await addRemito(newRemito)
+    console.log(remitoAgregado)
+    //setNewCalidad({nombr/e: ""})*/
+    setModalOpen(false)
+    router.refresh()
+  }
 
   return (
     <div>
@@ -50,52 +58,28 @@ export function AddIngresoMP() {
           <h3 className="font-bold text-lg">Ingreso de Materia Prima</h3>
           <div className="modal-action">
             <div className="w-full flex flex-col">
-              <div className="flex w-full">
+              <div className="flex space-x-10 w-full">
                 {/* Fecha de remito /*/}
-                <label className="form-control w-full max-w-xs">
-                  <div className="label">
-                    <span className="label-text">Fecha de Ingreso</span>
-                  </div>
-                  <input
-                    value={newRemito.fechaIngreso}
-                    onChange={(e) =>
-                      setNewRemito({
-                        ...newRemito,
-                        fechaIngreso: e.target.value,
-                      })
-                    }
-                    type="date"
-                    placeholder="Fecha de Ingreso"
-                    className="input input-bordered w-1/2"
-                  />
-                  <div className="label hidden">
-                    <span className="label-text-alt">Error</span>
-                  </div>
-                </label>
-
-                {/* Fecha de remito /*/}
-                <label className="form-control w-full max-w-md">
-                  <div className="label">
-                    <span className="label-text">Numero de Remito</span>
-                  </div>
-                  <input
-                    value={newRemito.remito}
-                    onChange={(e) =>
-                      setNewRemito({
-                        ...newRemito,
-                        remito: parseInt(e.target.value),
-                      })
-                    }
-                    type="number"
-                    placeholder="Fecha de Ingreso"
-                    className="input input-bordered w-1/2"
-                  />
-                  <div className="label hidden">
-                    <span className="label-text-alt">Error</span>
-                  </div>
-                </label>
+                <InputFecha
+                  placeHolder="Ingrese Fecha"
+                  title="Fecha de Remito"
+                  value={newRemito.fechaIngreso}
+                  onChange={(nuevoValor) =>
+                    setNewRemito({ ...newRemito, fechaIngreso: nuevoValor })
+                  }
+                />
+                {/* Numero de remito /*/}
+                <InputNumber
+                  value={newRemito.remito}
+                  onChange={(nuevoValor) =>
+                    setNewRemito({ ...newRemito, remito: nuevoValor })
+                  }
+                  title="Numero de Remito"
+                  placeHolder="Ingrese numero"
+                />
               </div>
-              <div className="flex w-full">
+
+              <div className="flex w-full space-x-10">
                 {/* Proveedor */}
                 <SelectProveedores
                   proveedorId={newRemito.proveedorId}
@@ -116,11 +100,50 @@ export function AddIngresoMP() {
                     })
                   }
                 />
+                {/* Proveedor */}
+                <SelectTransportistas
+                  transportistaId={newRemito.transportistaId}
+                  onSelectionChange={(e) =>
+                    setNewRemito({
+                      ...newRemito,
+                      transportistaId: Number(e.target.value),
+                    })
+                  }
+                />
+              </div>
+
+              <div className="flex space-x-10 w-full">
+                {/* Tarifa /*/}
+                <InputNumber
+                  value={newRemito.tarifa}
+                  onChange={(nuevoValor) =>
+                    setNewRemito({ ...newRemito, tarifa: nuevoValor })
+                  }
+                  title="Tarifa"
+                  placeHolder="Ingrese Tarifa"
+                />
+
+                {/* Flete /*/}
+                <InputNumber
+                  value={newRemito.flete}
+                  onChange={(nuevoValor) =>
+                    setNewRemito({ ...newRemito, flete: nuevoValor })
+                  }
+                  title="Flete"
+                  placeHolder="Ingrese Flete"
+                />
+
+                <InputText  
+                  value={newRemito.factura}
+                  onChange={(nuevoValor) => setNewRemito({...newRemito, factura: nuevoValor})}
+                  title="Factura"
+                  placeHolder="Ingreso Factura"
+                />
               </div>
               <br />
               <div>
                 <button type="submit" className="btn btn-">
-                  Guardar
+                  Siguiente
                 </button>
               </div>
             </div>

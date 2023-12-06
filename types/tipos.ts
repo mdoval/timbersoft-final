@@ -47,5 +47,6 @@ export interface IRemito {
     transportistaId: number,
     destinoId: number,
     tarifa: number,
-    flete: number
+    flete: number,
+    factura: string,
 }
