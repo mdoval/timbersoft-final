@@ -11,6 +11,7 @@ import InputNumber from "../Controls/InputNumber";
 import { addRemito } from "@/utils/remitosFunctions";
 import { useRouter } from "next/navigation";
 import InputText from "../Controls/InputText";
+import AddRollo from "./AddRollo";
 
 export function AddIngresoMP() {
   const router = useRouter()
@@ -51,7 +52,7 @@ export function AddIngresoMP() {
   return (
     <div>
       <button className="btn btn-primary" onClick={() => setModalOpen(true)}>
-        Crear Calidad
+        Cargar Remito
       </button>
       <ModalLg modalOpen={modalOpen} setModalOpen={setModalOpen}>
         <form onSubmit={handleSubmitNewRemito}>
@@ -146,6 +147,10 @@ export function AddIngresoMP() {
                   Siguiente
                 </button>
               </div>
+              <div className="w-full h-64 bg-red-200 mt-4">
+                  Aca va la tabla
+              </div>
+              <AddRollo />
             </div>
           </div>
         </form>

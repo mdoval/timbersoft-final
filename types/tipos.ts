@@ -50,3 +50,14 @@ export interface IRemito {
     flete: number,
     factura: string,
 }
+
+export interface IRollo {
+    id?: number,
+    categoriaId: number,
+    calidadId: number,
+    largoId: number,
+    toneladas: number,
+    unidades: number,
+    precio: number,
+    importe: number,
+  }
