@@ -7,9 +7,10 @@ import { isUserAllow } from "@/utils/usersFunctions";
 export async function GET( request ) {
     const session = await getServerSession(authOptions);    
     const userEmail = session.user.email
-    //const allow = await isUserAllow(userEmail, 1)
-    let destinosDelAserradero = []
     
+    const allow = await isUserAllow(userEmail, 1)
+
+    let destinosDelAserradero = []
     try {
         const user = await prisma.user.findUnique({
             where: { email: userEmail },
