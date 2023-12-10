@@ -1,4 +1,3 @@
-import { AddIngresoMP } from "@/app/components/Buttons/AddIngresoMP";
 import Link from "next/link";
 
 export default async function IngresoMateriaPrima() {
