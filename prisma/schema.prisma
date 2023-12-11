@@ -47,6 +47,7 @@ model remito {
   factura String
   aserradero aserradero @relation(fields: [aserraderoId], references: [id])
   aserraderoId Int
+  rollos rollo[]
 }
 
 model proveedor {
@@ -103,6 +104,8 @@ model rollo {
   importe Decimal @db.Decimal(10,2)
   aserradero aserradero @relation(fields: [aserraderoId], references: [id])
   aserraderoId Int
+  remito remito @relation(fields: [remitoId], references: [id])
+  remitoId Int
 }
 
 model calidad {

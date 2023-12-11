@@ -5,16 +5,27 @@ import { ChangeEvent, useEffect, useState } from "react";
 
 interface SelectCategoriasProps {
   value: number;
-  onChange: (newValue: number) => void;
+  //onChange: (newValue: number) => void;
+  onChange: (newValue: ICategoria) => void;
 }
 
-const SelectCategorias: React.FC<SelectCategoriasProps> = ({ value, onChange}) => {
+const SelectCategorias: React.FC<SelectCategoriasProps> = ({
+  value,
+  onChange,
+}) => {
   const [categorias, setCategorias] = useState<ICategoria[]>([]);
 
-  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+  /*  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const newValue = event.target.value
-    // Aquí podrías realizar alguna validación adicional si es necesario
     onChange(parseInt(newValue));
+};*/
+
+  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue =  parseInt(event.target.value)
+    const selectedCategoria = categorias.find((categoria) => categoria.id === Number(selectedValue))
+    console.log(selectedCategoria)
+//    const newValue: ICategoria = {id: selectedCategoria?.id, nombre: selectedCategoria?.nombre}
+  //  onChange(newValue)
   };
 
   useEffect(() => {
@@ -33,7 +44,11 @@ const SelectCategorias: React.FC<SelectCategoriasProps> = ({ value, onChange}) =
       <div className="label">
         <span className="label-text">Seleccione Categoria</span>
       </div>
-      <select className="select select-bordered" value={value} onChange={handleChange} >
+      <select
+        className="select select-bordered"
+        value={value}
+        onChange={handleChange}
+      >
         {categorias.map((categoria) => {
           return (
             <option key={categoria.id} value={categoria.id}>
@@ -49,4 +64,4 @@ const SelectCategorias: React.FC<SelectCategoriasProps> = ({ value, onChange}) =
   );
 };
 
-export default SelectCategorias
+export default SelectCategorias;

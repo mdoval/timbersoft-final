@@ -16,8 +16,7 @@ import { useState } from "react";
 export default function AddRemito() {
   const router = useRouter();
   const [newRemito, setNewRemito] = useState<IRemito>({
-    id: 1,
-    fechaIngreso: obtenerFechaFormateada(),
+    fechaIngreso: new Date(),
     remito: 0,
     proveedorId: 0,
     transportistaId: 0,
@@ -26,6 +25,7 @@ export default function AddRemito() {
     flete: 0,
     factura: "",
   });
+  const [fecha, setFecha] = useState(obtenerFechaFormateada())
 
   const [rollos, setRollos] = useState<IRollo[]>([]);
 
@@ -39,13 +39,9 @@ export default function AddRemito() {
   }
 
   const handleGuardar = async () => {
+    setNewRemito({...newRemito, fechaIngreso: new Date(fecha)})
     const remitoGuardado = await addRemitoRollos(newRemito, rollos)
     console.log(remitoGuardado)
-    //console.log(newRemito);
-    //const remitoAgregado = await addRemito(newRemito)
-    //console.log(remitoAgregado)
-    //setNewCalidad({nombr/e: ""})*/
-    //setModalOpen(false)
     router.push("/dashboard/ingresomp/")
     router.refresh()
   };
@@ -65,11 +61,9 @@ export default function AddRemito() {
             {/* Fecha de remito /*/}
             <InputFecha
               placeHolder="Ingrese Fecha"
-              title="Fecha de Remito"
-              value={newRemito.fechaIngreso}
-              onChange={(nuevoValor) =>
-                setNewRemito({ ...newRemito, fechaIngreso: nuevoValor })
-              }
+              title="Fecha de Remito"              
+              value={fecha}
+              onChange={(nuevoValor) => setFecha( nuevoValor )}              
             />
             {/* Numero de remito /*/}
             <InputNumber

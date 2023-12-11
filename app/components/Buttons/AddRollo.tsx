@@ -24,7 +24,6 @@ const AddRollo: FC<AddRolloProps> = ({addRollo}) => {
   });
 
   const handleAddRollo = () => {
-    alert("Guardando Rollo")
     addRollo(form)
     setModalOpen(false)
   }
@@ -47,7 +46,7 @@ const AddRollo: FC<AddRolloProps> = ({addRollo}) => {
             <SelectCategorias
               value={form.categoriaId}
               onChange={(newValue) =>
-                setForm({ ...form, categoriaId: newValue })
+                setForm({ ...form, categoriaId: Number(newValue) })
               }
             />
             <SelectLargos
