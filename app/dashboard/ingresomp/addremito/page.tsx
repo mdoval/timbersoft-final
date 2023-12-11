@@ -26,7 +26,6 @@ export default function AddRemito() {
     factura: "",
   });
   const [fecha, setFecha] = useState(obtenerFechaFormateada())
-
   const [rollos, setRollos] = useState<IRollo[]>([]);
 
   function obtenerFechaFormateada(): string {

@@ -2,6 +2,7 @@
 
 import { ICategoria, IRolloNew } from "@/types/tipos";
 import { FC } from "react";
+import SelectCategoriasNew from "../components/Controls/SelectCategoriasNew";
 
 export default async function TestingPage() {
   const categorias: ICategoria[] = [
@@ -30,34 +31,7 @@ export default async function TestingPage() {
     <div className="flex flex-col space-y-5">
       <h1>Testing</h1>
       <span>{JSON.stringify(rollo)}</span>
-      <SelectTesting categorias={categorias} onChange={(categoriaSeleccionad) => handleChangeCategoria(categoriaSeleccionad)} />
+      <SelectCategoriasNew categorias={categorias} onChange={(categoriaSeleccionad) => handleChangeCategoria(categoriaSeleccionad)} />
     </div>
   );
 }
-
-interface SelectProps {
-  categorias: ICategoria[] 
-  onChange: (categoria: ICategoria) => void
-}
-
-const SelectTesting: FC<SelectProps> = ({categorias, onChange}) => {
-  const handleChange = (id: number) => {
-    try {
-      const cat: ICategoria | undefined = categorias.find((categoria) => categoria.id === id)
-      if(cat != undefined) { 
-        onChange(cat) 
-      }
-      //console.log(JSON.stringify(cat))
-   } catch(error) {
-      console.log("Error al seleccionar categoria")
-   }
-  }
-
-  return (
-    <select className="select select-bordered w-full max-w-xs" onChange={(e) => handleChange(Number(e.target.value))} >
-      {categorias.map((categoria) => {
-        return <option key={categoria.id} value={categoria.id}>{categoria.nombre}</option>
-      })}  
-    </select>
-  );
-};

@@ -2,10 +2,11 @@
 
 import { FC, useState } from "react";
 import SelectCategorias from "../Controls/SelectCategorias";
-import { IRollo } from "@/types/tipos";
+import { ICategoria, IRollo } from "@/types/tipos";
 import SelectLargos from "../Controls/SelectLargos";
 import InputNumber from "../Controls/InputNumber";
 import ModalFlex from "../Modal/ModalFlex";
+import SelectCategoriasNew from "../Controls/SelectCategoriasNew";
 
 interface AddRolloProps {
   addRollo: (nuevoRollo: IRollo) => void
@@ -21,11 +22,15 @@ const AddRollo: FC<AddRolloProps> = ({addRollo}) => {
     unidades: 0,
     precio: 0,
     importe: 0,
-  });
+  });  
 
   const handleAddRollo = () => {
     addRollo(form)
     setModalOpen(false)
+  }
+
+  const handleChangeCategoria = (cat: ICategoria) => {
+    console.log(cat)
   }
 
   return (
@@ -43,12 +48,7 @@ const AddRollo: FC<AddRolloProps> = ({addRollo}) => {
         <div className="modal-action">
           <br />
           <div className="w-full h-full flex flex-col space-y-1">
-            <SelectCategorias
-              value={form.categoriaId}
-              onChange={(newValue) =>
-                setForm({ ...form, categoriaId: Number(newValue) })
-              }
-            />
+            <SelectCategoriasNew />
             <SelectLargos
               value={form.largoId}
               onChange={(newValue) => setForm({ ...form, largoId: newValue })}
@@ -88,3 +88,12 @@ const AddRollo: FC<AddRolloProps> = ({addRollo}) => {
 };
 
 export default AddRollo;
+
+/*
+<SelectCategorias
+value={form.categoriaId}
+onChange={(newValue) =>
+  setForm({ ...form, categoriaId: Number(newValue) })
+}
+/>
+*/
