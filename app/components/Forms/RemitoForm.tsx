@@ -14,6 +14,7 @@ import { addRemito } from "@/utils/remitosFunctions";
 import { useRouter } from "next/navigation";
 import { FC, useState } from "react";
 import AddRollo2 from "../Buttons/AddRollo2";
+import RollosList from "../DataTable/RollosList";
 
 interface RemitoFormProps {
   proveedores: IProveedor[];
@@ -83,6 +84,7 @@ const RemitoForm: FC<RemitoFormProps> = ({
   const agregarRollos = (nuevoRollo: IRollo) => {
     rollos.push(nuevoRollo)
     setRollos(rollos)    
+    router.refresh();
     console.log(rollos)
   }
 
@@ -227,7 +229,11 @@ const RemitoForm: FC<RemitoFormProps> = ({
       <div>
         <AddRollo2 categorias={categorias} largos={largos} calidades={calidades} addRollo={agregarRollos}/>
       </div>
-
+      
+      <div>
+        <RollosList rollos={rollos} />
+      </div>
+      
       <div className="w-full flex flex-row-reverse">
         <button className="btn btn-primary mr-10" onClick={handleClick}>
           Guardar
