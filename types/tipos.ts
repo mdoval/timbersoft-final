@@ -43,9 +43,9 @@ export interface IRemito {
   id?: number;
   fechaIngreso: Date;
   remito: number;
-  proveedorId: number;
-  transportistaId: number;
-  destinoId: number;
+  proveedorId: number | undefined;
+  transportistaId: number | undefined;
+  destinoId: number | undefined;
   tarifa: number;
   flete: number;
   factura: string;
@@ -53,9 +53,9 @@ export interface IRemito {
 
 export interface IRollo {
   id?: number;
-  categoriaId: number;
-  calidadId: number;
-  largoId: number;
+  categoriaId: number | undefined;
+  calidadId: number | undefined;
+  largoId: number | undefined;
   toneladas: number;
   unidades: number;
   precio: number;

@@ -7,7 +7,6 @@ import { isUserAllow } from "@/utils/usersFunctions";
 export async function GET( request ) {
     const session = await getServerSession(authOptions);    
     const userEmail = session.user.email
-    //const allow = await isUserAllow(userEmail, 1)
 
     let calidadesDelAserradero = []
     
@@ -20,6 +19,7 @@ export async function GET( request ) {
               },
             },
           });
+          
           if (user) {
             calidadesDelAserradero = user.aserradero?.calidades;
             //console.log("Proveedores asociados al aserradero del usuario:", proveedoresDelAserradero);
