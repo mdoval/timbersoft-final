@@ -9,33 +9,32 @@ import ModalFlex from "../Modal/ModalFlex";
 import SelectCategoriasNew from "../Controls/SelectCategoriasNew";
 
 interface AddRolloProps {
-  addRollo: (nuevoRollo: IRollo) => void
+  addRollo: (nuevoRollo: IRollo) => void;
 }
 
-const AddRollo: FC<AddRolloProps> = ({addRollo}) => {
+const AddRollo: FC<AddRolloProps> = ({ addRollo }) => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [form, setForm] = useState<IRollo>({
-    categoriaId: 0,
-    calidadId: 0,
-    largoId: 0,
+    categoriaId: 1,
+    calidadId: 1,
+    largoId: 1,
     toneladas: 0,
     unidades: 0,
     precio: 0,
     importe: 0,
-  });  
+  });
 
   const handleAddRollo = () => {
-    addRollo(form)
-    setModalOpen(false)
-  }
-
-  const handleChangeCategoria = (cat: ICategoria) => {
-    console.log(cat)
-  }
+    addRollo(form);
+    setModalOpen(false);
+  };
 
   return (
     <div>
-      <button className="btn btn-primary mr-10" onClick={() => setModalOpen(true)}>
+      <button
+        className="btn btn-primary mr-10"
+        onClick={() => setModalOpen(true)}
+      >
         Agregar Rollo
       </button>
       <ModalFlex
@@ -48,7 +47,10 @@ const AddRollo: FC<AddRolloProps> = ({addRollo}) => {
         <div className="modal-action">
           <br />
           <div className="w-full h-full flex flex-col space-y-1">
-            <SelectCategoriasNew />
+            <SelectCategorias
+              value={form.categoriaId}
+              onChange={(newValue) => setForm({ ...form, categoriaId: newValue })}
+            />
             <SelectLargos
               value={form.largoId}
               onChange={(newValue) => setForm({ ...form, largoId: newValue })}

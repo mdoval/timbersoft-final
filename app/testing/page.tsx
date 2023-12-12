@@ -1,37 +1,53 @@
-'use client'
+"use client";
 
-import { ICategoria, IRolloNew } from "@/types/tipos";
-import { FC } from "react";
-import SelectCategoriasNew from "../components/Controls/SelectCategoriasNew";
+import { ICategoria } from "@/types/tipos";
+import { useState, FC } from "react";
 
-export default async function TestingPage() {
-  const categorias: ICategoria[] = [
-    { id: 0, nombre: "Categoria 1" },
-    { id: 1, nombre: "Categoria 2" },
-    { id: 2, nombre: "Categoria 3" },
-    { id: 3, nombre: "Categoria 4" },
-  ];
+export default function TestingPage() {
+  const [valorForm, setValorForm] = useState<number>(0);
 
-  let rollo: IRolloNew | undefined = undefined;
-  
-  try {
-    const cat: ICategoria = categorias.find(
-      (categoria) => categoria.id === 3
-    ) as ICategoria;
-    rollo = { id: 0, categoria: cat };
-  } catch (error) {
-    console.log("No se pudo realizar la accion");
-  }
-  
-  const handleChangeCategoria = (cat: ICategoria) => {
-    console.log(cat)
-  }
+  const handleClick = () => {
+    alert(valorForm);
+  };
 
   return (
     <div className="flex flex-col space-y-5">
       <h1>Testing</h1>
-      <span>{JSON.stringify(rollo)}</span>
-      <SelectCategoriasNew categorias={categorias} onChange={(categoriaSeleccionad) => handleChangeCategoria(categoriaSeleccionad)} />
+      <button className="btn btn-primary w-1/4" onClick={handleClick}>
+        Click
+      </button>
+      <MiSelect value={valorForm} />
     </div>
   );
 }
+
+interface MiSelectProps {
+  value: number;
+}
+
+const MiSelect: FC<MiSelectProps> = ({ value }) => {
+  const [valor, setValor] = useState<number>(value);
+
+  const categorias: ICategoria[] = [
+    { id: 0, nombre: "Categoria 1" },
+    { id: 1, nombre: "Categoria 2" },
+    { id: 2, nombre: "Categoria 3" },
+  ];
+
+  return (
+    <select
+      className="select select-bordered w-full max-w-xs"
+      value={valor}
+      defaultValue={valor}
+      onChange={(e) => setValor(Number(e.target.value))}
+    >
+      {categorias.map((categoria, index) => {
+        return (
+          <option key={index} value={categoria.id}>
+            {categoria.nombre}
+          </option>
+        );
+      })}
+    </select>
+  );
+};

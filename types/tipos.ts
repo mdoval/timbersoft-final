@@ -61,7 +61,6 @@ export interface IRollo {
   precio: number;
   importe: number;
   remitoId?: number;
-  categoria?: ICategoria
 }
 
 export interface IRolloNew {
