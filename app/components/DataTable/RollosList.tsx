@@ -1,8 +1,8 @@
-import { IRollo } from "@/types/tipos";
+import { IRollo, IRolloUI } from "@/types/tipos";
 import { FC } from "react";
 
 interface RollosListProps {
-  rollos: IRollo[];
+  rollos: IRolloUI[];
 }
 
 const RollosList: FC<RollosListProps> = ({ rollos }) => {
@@ -13,6 +13,7 @@ const RollosList: FC<RollosListProps> = ({ rollos }) => {
           <tr>
             <th>Cat</th>
             <th>Largo</th>
+            <th>Calidad</th>
             <th>Ton</th>
             <th>Unidades</th>
             <th>Precio</th>
@@ -20,11 +21,12 @@ const RollosList: FC<RollosListProps> = ({ rollos }) => {
           </tr>
         </thead>
         <tbody>
-          {rollos.map((rollo: IRollo, index:number) => {
+          {rollos.map((rollo: IRolloUI, index:number) => {
             return (
               <tr key={index} className="hover">
-                <th>{rollo.categoriaId}</th>
-                <td>{rollo.largoId}</td>
+                <th>{rollo.categoria?.nombre}</th>
+                <td>{rollo.largo?.tamanio}</td>
+                <td>{rollo.calidad?.nombre}</td>
                 <td>{rollo.toneladas}</td>
                 <td>{rollo.unidades}</td>
                 <td>{rollo.precio}</td>

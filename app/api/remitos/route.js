@@ -16,14 +16,22 @@ export async function GET(request) {
             where: { email: userEmail },
             include: {
                 aserradero: {
-                    include: { remitos: true },
+                    include: { 
+                        remitos: {
+                            include: {
+                                proveedor: true,
+                                transportista: true,
+                                destino: true,
+                            }
+                        }
+                    },
                 },
             },
         })
     
         if(user) {
             remitosDelAserradero = user.aserradero?.remitos
-            console.log(remitosDelAserradero)
+            //console.log(remitosDelAserradero)
         } else {
             console.log("Usuario no encontrado")
         }

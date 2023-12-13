@@ -7,14 +7,15 @@ import {
   ILargo,
   IProveedor,
   IRemito,
-  IRollo,
+  IRolloUI,
   ITransportista,
 } from "@/types/tipos";
 import { addRemito } from "@/utils/remitosFunctions";
 import { useRouter } from "next/navigation";
-import { FC, useState } from "react";
-import AddRollo2 from "../Buttons/AddRollo2";
+import { ChangeEvent, FC, useState } from "react";
+import AddRollo from "../Buttons/AddRollo";
 import RollosList from "../DataTable/RollosList";
+import addRemitoRollos from "@/utils/api";
 
 interface RemitoFormProps {
   proveedores: IProveedor[];
@@ -52,17 +53,19 @@ const RemitoForm: FC<RemitoFormProps> = ({
   categorias,
   calidades,
   largos,
-}) => { 
+}) => {
   const router = useRouter();
   const [fechaRemito, setFechaRemito] = useState<string>(today());
   const [numeroRemito, setNumeroRemito] = useState<number>(0);
   const [proveedor, setProveedor] = useState<IProveedor>(proveedores[0]);
   const [destino, setDestino] = useState<IDestino>(destinos[0]);
-  const [transportista, setTransportista] = useState<ITransportista>(transportistas[0]);
+  const [transportista, setTransportista] = useState<ITransportista>(
+    transportistas[0]
+  );
   const [tarifa, setTarifa] = useState<number>(0);
   const [flete, setFlete] = useState<number>(0);
   const [factura, setFactura] = useState<string>("");
-  const [rollos, setRollos] = useState<IRollo[]>([])
+  const [rollos, setRollos] = useState<IRolloUI[]>([]);
 
   const handleClick = async () => {
     const remito: IRemito = {
@@ -75,17 +78,33 @@ const RemitoForm: FC<RemitoFormProps> = ({
       flete: flete,
       factura: factura,
     };
-    const newRemito = await addRemito(remito);
-    console.log(newRemito);
+    
+    const remitoGuardado = await addRemitoRollos(remito, rollos);
+    console.log(remitoGuardado);
     router.push("/dashboard/ingresomp/");
     router.refresh();
   };
 
-  const agregarRollos = (nuevoRollo: IRollo) => {
-    rollos.push(nuevoRollo)
-    setRollos(rollos)    
+  const agregarRollos = (nuevoRollo: IRolloUI) => {
+    rollos.push(nuevoRollo);
+    setRollos(rollos);
     router.refresh();
-    console.log(rollos)
+    console.log(rollos);
+  };
+
+  const handleProveedorChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const proveedorEncontrado = proveedores.find(proveedor => proveedor.id === Number(e.target.value)) as IProveedor
+    setProveedor(proveedorEncontrado)
+  }
+
+  const handleDestinoChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const destinoEncontrado = destinos.find(destino => destino.id === Number(e.target.value)) as IDestino
+    setDestino(destinoEncontrado)
+  }
+
+  const handleTransportistaChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const transportistaEncontrado = transportistas.find(transportista => transportista.id === Number(e.target.value)) as ITransportista
+    setProveedor(transportistaEncontrado)
   }
 
   return (
@@ -130,6 +149,7 @@ const RemitoForm: FC<RemitoFormProps> = ({
             <select
               className="select select-bordered"
               defaultValue={proveedor.id}
+              onChange={handleProveedorChange}
             >
               {proveedores.map((proveedor) => {
                 return (
@@ -149,6 +169,7 @@ const RemitoForm: FC<RemitoFormProps> = ({
             <select
               className="select select-bordered"
               defaultValue={destino.id}
+              onChange={handleDestinoChange}
             >
               {destinos.map((destino) => {
                 return (
@@ -168,6 +189,7 @@ const RemitoForm: FC<RemitoFormProps> = ({
             <select
               className="select select-bordered"
               defaultValue={transportista.id}
+              onChange={handleTransportistaChange}
             >
               {transportistas.map((transportista) => {
                 return (
@@ -227,13 +249,18 @@ const RemitoForm: FC<RemitoFormProps> = ({
       </div>
       <br />
       <div>
-        <AddRollo2 categorias={categorias} largos={largos} calidades={calidades} addRollo={agregarRollos}/>
+        <AddRollo
+          categorias={categorias}
+          largos={largos}
+          calidades={calidades}
+          addRollo={agregarRollos}
+        />
       </div>
-      
+
       <div>
         <RollosList rollos={rollos} />
       </div>
-      
+
       <div className="w-full flex flex-row-reverse">
         <button className="btn btn-primary mr-10" onClick={handleClick}>
           Guardar

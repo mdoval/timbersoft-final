@@ -63,6 +63,17 @@ export interface IRollo {
   remitoId?: number;
 }
 
+export interface IRolloUI {
+  categoria: ICategoria | undefined;
+  calidad: ICalidad | undefined;
+  largo: ILargo | undefined;
+  toneladas: number;
+  unidades: number;
+  precio: number;
+  importe: number;
+}
+
+
 export interface IRolloNew {
   id?: number;
   categoria: ICategoria;
