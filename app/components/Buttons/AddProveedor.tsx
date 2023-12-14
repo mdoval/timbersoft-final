@@ -5,18 +5,12 @@ import Modal from "@/app/components/Modal/Modal";
 import { useRouter } from "next/navigation";
 import { addProveedor } from "@/utils/proveedoresFunctions";
 import { IProveedor } from "@/types/tipos";
-import ErrorMessageSpan from "../ErrorMessageSpan";
-
-interface ErroresState {
-  proveedor?: string;
-}
 
 export function AddProveedor() {
   const router = useRouter();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [newProveedor, setNewProveedor] = useState<IProveedor>({ nombre: "" });
   const [botonHabilitado, setBotonHabilitado] = useState(false);
-  /* manejo de errores */
 
   const handleSubmitNewProveedor: FormEventHandler<HTMLFormElement> = async (
     e
@@ -28,14 +22,14 @@ export function AddProveedor() {
       setModalOpen(false);
       router.refresh();
     } catch (error) {
-      console.log("No se pudo guardar el proveedor");
+      console.log("No se pudo guardar el Proveedor");
     }
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const valor = e.target.value;
-    setNewProveedor({nombre: valor});
-    setBotonHabilitado(valor.trim() !== '')
+    setNewProveedor({ nombre: valor });
+    setBotonHabilitado(valor.trim() !== "");
   };
 
   return (
@@ -62,7 +56,11 @@ export function AddProveedor() {
                   className="input input-bordered w-full"
                 />
               </label>
-              <button type="submit" className="btn btn-primary" disabled={!botonHabilitado} >
+              <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={!botonHabilitado}
+              >
                 Guardar
               </button>
             </div>

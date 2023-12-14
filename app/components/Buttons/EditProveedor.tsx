@@ -21,11 +21,13 @@ const EditProveedor: React.FC<EditProveedorProps> = ({ proveedor }) => {
     e
   ) => {
     e.preventDefault();
-    //console.log(proveedorToEdit)
-    await editProveedor(proveedorToEdit);
-    //setProveedorToEdit()
-    setOpenModalEdit(false);
-    router.refresh();
+    try {
+      await editProveedor(proveedorToEdit);
+      setOpenModalEdit(false);
+      router.refresh();  
+    } catch( error ) {
+      console.log("Error al guardar proveedor")
+    }
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -62,16 +64,16 @@ const EditProveedor: React.FC<EditProveedorProps> = ({ proveedor }) => {
                   placeholder="Nombre del proveedor"
                   className="input input-bordered w-full"
                 />
-              </label>
-              <button
-                type="submit"
-                className="btn btn-primary"
-                disabled={!botonHabilitado}
-              >
-                Guardar
-              </button>
+                </label>
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  disabled={!botonHabilitado}
+                >
+                  Guardar
+                </button>
+              </div>
             </div>
-          </div>
         </form>
       </Modal>
     </div>
