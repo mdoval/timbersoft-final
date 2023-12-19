@@ -22,9 +22,9 @@ const ItemRemito: React.FC<RemitoProps> = ({remito}) => {
       <td>{remito.id}</td>
       <td>{formatoFecha(remito.fechaIngreso)}</td>
       <td>{remito.remito}</td>
-      <td>{remito.proveedor.nombre}</td>
-      <td>{remito.transportista.nombre}</td>
-      <td>{remito.destino.nombre}</td>
+      <td>{remito.proveedor?.nombre}</td>
+      <td>{remito.transportista?.nombre}</td>
+      <td>{remito.destino?.nombre}</td>
       <td>{remito.factura}</td>
       <td className="flex gap-2"> 
         {/*<EditCalidad calidad={calidad} />*/}

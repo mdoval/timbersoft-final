@@ -12,18 +12,9 @@ export async function GET() {
         largo: {
             select: { tamanio: true }
         },
-        proveedor: {
-            select: { nombre: true}
-        },
         categoria: {
             select: { nombre: true }
         },
-        transportista: {
-            select: { nombre: true}
-        },
-        destino: {
-            select: { nombre: true}
-        }
       },
     });
   } catch (error) {

@@ -49,9 +49,9 @@ export interface IRemito {
   tarifa: number;
   flete: number;
   factura: string;
-  proveedor: IProveedor;
-  transportista: ITransportista;
-  destino: IDestino;
+  proveedor?: IProveedor;
+  transportista?: ITransportista;
+  destino?: IDestino;
 }
 
 export interface IRollo {
