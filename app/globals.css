@@ -78,7 +78,7 @@
   }
 
   .sidebar_submenu {
-    @apply /*bg-gray-300*/ mx-3;
+    @apply flex flex-col mx-3;
   }
 
   .sidebar_subitem {

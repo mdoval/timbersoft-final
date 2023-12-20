@@ -76,7 +76,6 @@ export interface IRolloUI {
   importe: number;
 }
 
-
 export interface IRolloNew {
   id?: number;
   categoria: ICategoria;

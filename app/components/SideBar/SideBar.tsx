@@ -8,7 +8,6 @@ export function SideBar() {
     <div className="sidebar">
       <SideBarInicio />
       <SideBarTablas />
-      <SideBarRollos />
       <SideBarProduccion />
     </div>
   )

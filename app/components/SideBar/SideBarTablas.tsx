@@ -26,7 +26,7 @@ export function SideBarTablas() {
           )}
         </div>
       </div>
-      <div className="sidebar_submenu" hidden={hidden}>
+      <div className={`sidebar_submenu ${hidden ? "hidden" : ""}`} >
         <div className="flex flex-col">
           <Link href="/dashboard/proveedores" className="sidebar_subitem">
             Proveedores

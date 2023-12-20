@@ -26,9 +26,12 @@ export function SideBarProduccion() {
           )}
         </div>
       </div>
-      <div className="sidebar_submenu" hidden={hidden}>
+      <div className={`sidebar_submenu ${hidden ? "hidden" : ""}`} >
         <Link href="/dashboard/ingresomp" className="sidebar_subitem">
           Ingreso de MP
+        </Link>
+        <Link href="/dashboard/factura" className="sidebar_subitem">
+          Registrar Factura
         </Link>
         <div className="sidebar_subitem">Consumo MP</div>
         <div className="sidebar_subitem">Alta de Produccion</div>
