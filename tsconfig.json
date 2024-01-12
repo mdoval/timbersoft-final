@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "utils/authOptions.ts", "app/api/auth/[...nextauth]/route.js", "middleware.ts", "app/components/TopBar/TopBarAccount.jsx", "app/components/TopBar/TopBar.jsx", "app/api/remitos/add/route.js", "app/api/remitos/route.js", "app/testing/page.tsx", "app/api/aserraderos/route.js", "app/dashboard/ingresomp/addremito"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "utils/authOptions.ts", "app/api/auth/[...nextauth]/route.js", "middleware.ts", "app/components/TopBar/TopBarAccount.jsx", "app/components/TopBar/TopBar.jsx", "app/api/remitos/add/route.js", "app/api/remitos/route.js", "app/testing/page.tsx", "app/api/aserraderos/route.js", "app/dashboard/ingresomp/addremito", "app/api/remitos/[id]/route.js"],
   "exclude": ["node_modules"]
 }

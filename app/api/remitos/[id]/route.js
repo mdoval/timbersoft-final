@@ -2,28 +2,32 @@ import prisma from "@/db/prisma";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
-import { isUserAllow } from "@/utils/usersFunctions";
 
-export async function GET(request) {
+export async function GET(request, {params}) {
     const session = await getServerSession(authOptions);    
     const userEmail = session.user.email
-
-    const allow = await isUserAllow(userEmail, 1)
+    //const userEmail = "martindoval@gmail.com"
+    //console.log(params)
 
     let remitosDelAserradero = []
     try {
         const user = await prisma.user.findUnique({
-            where: { email: userEmail },
+            where: { 
+                email: userEmail, 
+            },
             include: {
                 aserradero: {
                     include: { 
                         remitos: {
+                            where: {
+                                id: parseInt(params.id) 
+                            },
                             include: {
-                                rollos: {
+                                rollos:{
                                     include: {
                                         categoria: true,
-                                        calidad: true, 
-                                        largo: true
+                                        largo: true,
+                                        calidad: true
                                     }
                                 },
                                 proveedor: true,
