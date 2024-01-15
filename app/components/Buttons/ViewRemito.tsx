@@ -1,27 +1,15 @@
-'use client'
-
-import React, { FC, useState } from 'react'
-import ModalLg from '../Modal/ModalLg'
+import React, { FC } from 'react'
+import Link from 'next/link'
 
 interface Props {
-    remito: any
+    remitoId: number | undefined
 }
 
-const ViewRemito: FC<Props> = ({remito}) => {
-    console.log(remito)
-    const [modalOpen, setModalOpen] = useState<boolean>(false)
-
-    const handleModalOpen = () => {
-        setModalOpen(!modalOpen)        
-    }
+const ViewRemito: FC<Props> = ({remitoId}) => {
 
   return (
     <div>
-        <button className='btn btn-primary' onClick={handleModalOpen}>Ver Remito</button>
-        <ModalLg modalOpen={modalOpen} setModalOpen={handleModalOpen}>
-            <h1>Detalle de remito</h1>
-            <h2>{remito}</h2>
-        </ModalLg>
+        <Link className='btn btn-primary' href={`/dashboard/remitos/${remitoId}`}>Ver Remito</Link>
     </div>
   )
 }

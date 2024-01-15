@@ -9,7 +9,7 @@ export async function GET(request, {params}) {
     //const userEmail = "martindoval@gmail.com"
     //console.log(params)
 
-    let remitosDelAserradero = []
+    let remito = {}
     try {
         const user = await prisma.user.findUnique({
             where: { 
@@ -41,12 +41,11 @@ export async function GET(request, {params}) {
         })
     
         if(user) {
-            remitosDelAserradero = user.aserradero?.remitos
-            //console.log(remitosDelAserradero)
+            remito = user.aserradero?.remitos[0]
         } else {
             console.log("Usuario no encontrado")
         }
-        return NextResponse.json(remitosDelAserradero)
+        return NextResponse.json(remito)
     } catch (error) {
         console.log(error)
     }

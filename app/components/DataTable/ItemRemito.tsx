@@ -28,7 +28,7 @@ const ItemRemito: React.FC<RemitoProps> = ({remito}) => {
       <td>{remito.destino?.nombre}</td>
       <td>{remito.factura}</td>
       <td className="flex gap-2"> 
-        {<ViewRemito remito={remito} />}
+        {<ViewRemito remitoId={remito.id} />}
       </td>
     </tr>
   )
