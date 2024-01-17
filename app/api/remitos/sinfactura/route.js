@@ -19,24 +19,25 @@ export async function GET(request) {
                 aserradero: {
                     include: { 
                         remitos: {
-                            include: {                                
-                                proveedor: true,
-                                transportista: true,
-                                destino: true,
+                            include: {
                                 rollos: {
                                     include: {
                                         categoria: true,
-                                        calidad: true,
-                                        largo: true,
+                                        calidad: true, 
+                                        largo: true
                                     }
                                 },
+                                proveedor: true,
+                                transportista: true,
+                                destino: true,
                             },
-                            where: { factura: "" }
-                        },
+                            where: { factura: ''}
+                        },                        
                     },
                 },
             },
         })
+
     
         if(user) {
             remitosDelAserradero = user.aserradero?.remitos

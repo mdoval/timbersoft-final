@@ -9,7 +9,7 @@ interface FacturaFormProps {
 
 const FacturaForm: FC<FacturaFormProps> = ({ remitos }) => {
   const [factura, setFactura] = useState<string>("");
-  console.log(remitos);
+  //console.log(remitos);
 
   const handleChangeFactura = (event: ChangeEvent<HTMLInputElement>) => {
     setFactura(event.target.value);

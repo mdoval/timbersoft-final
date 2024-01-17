@@ -1,38 +1,34 @@
-import { IRemito } from "@/types/tipos";
-import React, { FC } from "react";
+'use client'
+
+import React, { FC, useState } from "react";
+import ViewRemito from "../Buttons/ViewRemito";
+import { remito } from "@prisma/client";
 
 interface ItemRemitoSinFacturaProps {
-  remito: [];
+  remito: remito | any;
+  checkboxes: any
 }
 
-const ItemRemitoSinFactura: FC<ItemRemitoSinFacturaProps> = ({ remito }) => {
-  console.log(remito)
+const ItemRemitoSinFactura: FC<ItemRemitoSinFacturaProps> = ({ remito, checkboxes }) => {
+  const [isChecked, setIsChecked] = useState(false)
+
+  const handleOnChange = () => {
+    setIsChecked(!isChecked);
+    console.log(`Chequeado ? ${isChecked}`)
+  };
+
   return (
-    <div>
-      <div className="w-full flex space-x-5">
-        <div>
-          <input type="checkbox" className="checkbox" />
-        </div>
-        <div>
-          <b>Remito Numero:</b> 1123234234
-        </div>
-        <div>
-          <b>Fecha Ingreso:</b> 20/12/2023
-        </div>
-        <div>
-          <b>Proveedor:</b>Juan Perez
-        </div>
-      </div>
-      <div className="flex flex-col">
-        <div className="text-right">
-          <div className="w-1/2 flex flex-row space-x-5 m-1  items-center ">
-            <div>CAT 1</div>
-            <div>Premium</div>
-            <div>22,50</div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <tr>
+      <th>
+        <input type="checkbox" id={checkboxes} className="checkbox" checked={isChecked} onChange={handleOnChange} />
+      </th>
+      <td>{remito.remito}</td>
+      <td>{remito.fechaIngreso.toString()}</td>
+      <td>{remito.proveedor.nombre}</td>
+      <td>
+        <ViewRemito remitoId={remito.id} />
+      </td>
+    </tr>
   );
 };
 

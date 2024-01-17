@@ -1,6 +1,5 @@
 import VolverButton from "@/app/components/Buttons/VolverButton";
 import { getRemito } from "@/utils/getRemito";
-import { rollo } from "@prisma/client";
 import React, { FC } from "react";
 
 const RemitoPage = async ({ params }: { params: { remitoId: number } }) => {
