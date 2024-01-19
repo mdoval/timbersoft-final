@@ -1,7 +1,8 @@
 "use client";
 
 import React, { ChangeEvent, FC, useState } from "react";
-import RemitosSinFacturaList from "../DataTable/RemitosSinFacturaList";
+import ViewRemito from "../Buttons/ViewRemito";
+import AddFactura from "../Buttons/AddFactura";
 
 interface FacturaFormProps {
   remitos: [];
@@ -9,19 +10,20 @@ interface FacturaFormProps {
 
 const FacturaForm: FC<FacturaFormProps> = ({ remitos }) => {
   const [factura, setFactura] = useState<string>("");
-  //console.log(remitos);
+  const [visibleBtnFactura, setVisiableBtnFactura] = useState<boolean>(false)
+  const [seleccionados, setSeleccionados] = useState<boolean[]>(new Array(remitos.length).fill(false));
 
   const handleChangeFactura = (event: ChangeEvent<HTMLInputElement>) => {
-    setFactura(event.target.value);
+    const valor = event.target.value
+    setFactura(valor);
+    setVisiableBtnFactura(valor!=='')
   };
 
-  function handleBotonDisabled(): boolean | undefined {
-    if (!factura) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  const manejarCambioCheckbox = (index: number) => {
+    const nuevosSeleccionados = [...seleccionados];
+    nuevosSeleccionados[index] = !nuevosSeleccionados[index];
+    setSeleccionados(nuevosSeleccionados);
+  };
 
   return (
     <div className="flex flex-col w-full h-full">
@@ -36,16 +38,44 @@ const FacturaForm: FC<FacturaFormProps> = ({ remitos }) => {
             className="input input-bordered w-full max-w-xs"
           />
         </label>
-        <button
-          className="btn btn-primary w-1/6"
-          disabled={handleBotonDisabled() ? true : false}
-        >
-          Agregar Remitos
-        </button>
-        </div>
-        <div className="w-full p-4 h-full">
-            <RemitosSinFacturaList remitos={remitos} />
-        </div>        
+        <AddFactura disable={visibleBtnFactura} />
+      </div>
+      <div className="w-full p-4 h-full">
+        {/*<RemitosSinFacturaList remitos={remitos} />*/}
+
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr>
+              <th></th>
+              <th>Nro. Remito</th>
+              <th>Proveedor</th>
+              <th>Destino</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {remitos.map((remito: any, index) => {
+              return (
+                <tr key={remito.id}>
+                  <th>
+                    <input
+                      type="checkbox"
+                      id={`checkbox-${remito.id}`}
+                      checked={seleccionados[index]}
+                      onChange={() => manejarCambioCheckbox(index)}
+                    />
+                  </th>
+                  <td>{remito.remito}</td>
+                  <td>{remito.proveedor.nombre}</td>
+                  <td>{remito.destino.nombre}</td>
+                  <td><ViewRemito remitoId={remito.id} /></td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

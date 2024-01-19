@@ -4,7 +4,6 @@ import React from "react";
 
 const RemitosPage = async () => {
   const remitos = await getRemitos();
-  //console.log(remitos);
 
   return (
     <div className="w-full h-full flex flex-col bg-white shadow-lg p-5 spa">
