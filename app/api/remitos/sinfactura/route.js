@@ -9,7 +9,7 @@ export async function GET(request) {
     const userEmail = session.user.email*/
     const userEmail = "martindoval@gmail.com"
 
-    const allow = await isUserAllow(userEmail, 1)
+    //const allow = await isUserAllow(userEmail, 1)
 
     let remitosDelAserradero = []
     try {

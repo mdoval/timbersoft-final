@@ -1,5 +1,7 @@
-export const registrarUsuario = async (usuario: IUsuario | undefined) => {
-  const url = `http://localhost:3000/api/usuarios/registro`;
+import { IUser } from "@/types/tipos";
+
+export const registrarUsuario = async (usuario: IUser | undefined) => {
+  const url = `http://localhost:3000/api/users/registro`;
   try {
     const res = await fetch(url, {
       method: "POST",

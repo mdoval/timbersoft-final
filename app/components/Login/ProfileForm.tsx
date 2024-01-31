@@ -3,10 +3,11 @@
 import updateUsuario from "@/utils/updateUsuario";
 import { useRouter } from "next/navigation";
 import React, { FC, useState } from "react";
-import Modal from "./Modal";
+import Modal from "@/app/components/Modal/Modal";
 import passwordChange from "@/utils/passwordChange";
 import uploadPhoto from "@/utils/uploadPhoto";
 import { useSession } from "next-auth/react";
+import { IUser } from "@/types/tipos";
 
 interface Props {
   user: any;
@@ -15,8 +16,8 @@ interface Props {
 const ProfileForm: FC<Props> = ({ user }) => {
   const router = useRouter();
   const [nombre, setNombre] = useState<string>(user.name);
-  const [hiddenPassword, setHiddenPassword] = useState<boolean>(true);
-  const [hiddenFoto, setHiddenFoto] = useState<boolean>(true);
+  const [hiddenPassword, setHiddenPassword] = useState<boolean>(false);
+  const [hiddenFoto, setHiddenFoto] = useState<boolean>(false);
   const [pass1, setPass1] = useState<string>("");
   const [pass2, setPass2] = useState<string>("");
   const [errorPass, setErrorPass] = useState<string>("");
@@ -24,7 +25,7 @@ const ProfileForm: FC<Props> = ({ user }) => {
 
   const handleUpdate = async () => {
     try {
-      const usuario: IUsuario = {
+      const usuario: IUser = {
         id: user.id,
         nombre: nombre,
       };
@@ -43,7 +44,7 @@ const ProfileForm: FC<Props> = ({ user }) => {
         setErrorPass("Las contraseñas no coinciden");
       } else {
         try {
-          const usuario: IUsuario = {
+          const usuario: IUser = {
             id: user.id,
             password: pass1,
           };
@@ -82,7 +83,7 @@ const ProfileForm: FC<Props> = ({ user }) => {
         <div className="w-24 rounded-full">
           <img src={user.avatar} />
         </div>
-        <button className="text-blue-600" onClick={() => setHiddenFoto(false)}>Cambiar Foto</button>
+        <button className="text-blue-600" onClick={() => setHiddenFoto(!hiddenFoto)}>Cambiar Foto</button>
       </div>
       <div>
         <label className="form-control w-full max-w-xs">
@@ -113,17 +114,17 @@ const ProfileForm: FC<Props> = ({ user }) => {
         </label>
       </div>
       <div>
-        <button className="m-4 text-blue-600" onClick={() => setHiddenPassword(false)}>
+        <button className="m-4 text-blue-600" onClick={() => setHiddenPassword(!hiddenPassword)}>
           Cambiar Contraseña
         </button>
       </div>
       <div>
         <label className="form-control w-full max-w-xs">
           <div className="label">
-            <span className="label-text">Empresa</span>
+            <span className="label-text">Aserradero</span>
           </div>
           <input
-            value={user.empresa.nombre}
+            value={user.aserradero.nombre}
             disabled={true}
             type="text"
             placeholder="Type here"
@@ -136,7 +137,7 @@ const ProfileForm: FC<Props> = ({ user }) => {
           Guardar
         </button>
       </div>
-      <Modal hidden={hiddenPassword}>
+      <Modal modalOpen={hiddenPassword} setModalOpen={() => setHiddenPassword(!hiddenPassword)}>
         <div className="flex flex-col">
           <div>
             <label className="form-control w-full max-w-xs">
@@ -189,7 +190,7 @@ const ProfileForm: FC<Props> = ({ user }) => {
           </div>
         </div>
       </Modal>
-      <Modal hidden={hiddenFoto}>
+      <Modal modalOpen={hiddenFoto} setModalOpen={() => setHiddenFoto(!hiddenFoto)}>
         <form onSubmit={handleSubirFoto}>
           <input
             type="file"

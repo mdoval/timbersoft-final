@@ -3,12 +3,13 @@ export interface IProveedor {
   nombre: string;
 }
 
+/*
 export interface IUser {
   email: string;
   name: string;
   aserraderoId?: number;
 }
-
+*/
 export interface IAserradero {
   id: number;
   nombre: string;
@@ -79,4 +80,18 @@ export interface IRolloUI {
 export interface IRolloNew {
   id?: number;
   categoria: ICategoria;
+}
+
+export interface IUser {
+  id?: number
+  createdAt?: Date
+  updatedAt?: Date
+  email?: string
+  nombre?: string
+  password?: string
+  aserradero?: string
+}
+
+export interface IError {
+  message: string
 }

@@ -1,4 +1,4 @@
-import { IUser } from "@/types/tipos";
+/*import { IUser } from "@/types/tipos";
 
   export const addUser = async ( user: IUser): Promise<IUser> => {
     const nuevoUsuario:IUser = {name: user.name, email: user.email, aserraderoId: user.aserraderoId} 
@@ -45,4 +45,6 @@ import { IUser } from "@/types/tipos";
     if (res.user.aserraderoId === aserraderoId) allow = true
     //console.log(allow)
     return res
-  }   
+  }  
+
+*/

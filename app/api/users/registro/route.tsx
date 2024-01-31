@@ -6,8 +6,8 @@ export async function POST(req: Request) {
     const data = await req.json()
    
     try {
-        const newEmpresa = await prisma.aserradero.create({data: {nombre: data.empresa}})
-        const newUsuario = await prisma.user.create({data: {email: data.email, name: data.nombre, aserraderoId: newEmpresa.id, password: data.password}})
+        const newAserradero = await prisma.aserradero.create({data: {nombre: data.aserradero}})
+        const newUsuario = await prisma.user.create({data: {email: data.email, name: data.nombre, aserraderoId: newAserradero.id, password: data.password}})
         return NextResponse.json(newUsuario)
     } catch( error ) {
         if (error instanceof PrismaClientKnownRequestError) {

@@ -1,5 +1,6 @@
 "use client";
 
+import { IUser } from "@/types/tipos";
 import { registrarUsuario } from "@/utils/registrarUsuario";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
@@ -9,7 +10,7 @@ const RegisterForm = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [nombre, setNombre] = useState<string>("");
-  const [empresa, setEmpresa] = useState<string>("");
+  const [aserradero, setAserradero] = useState<string>("");
   const [errorEmail, setErrorEmail] = useState<string>("");
   const [errorPassword, setErrorPassword] = useState<string>("");
   const [errorNombre, setErrorNombre] = useState<string>("");
@@ -22,16 +23,16 @@ const RegisterForm = () => {
     else setErrorPassword("");
     if (!nombre) setErrorNombre("Debe colocar un nombre");
     else setErrorNombre("");
-    if (!empresa) setErrorEmpresa("Debe colocar una empresa");
+    if (!aserradero) setErrorEmpresa("Debe colocar una empresa");
     else setErrorEmpresa("");
-    if (email && password && nombre && empresa) {
+    if (email && password && nombre && aserradero) {
       //console.log("Registrando Cliente")
       try {
-        const usuario: IUsuario = {
+        const usuario: IUser = {
           email: email,
           password: password,
           nombre: nombre,
-          empresa: empresa
+          aserradero: aserradero
         }
           const res = await registrarUsuario(usuario)      
         router.push("/registrado")
@@ -112,8 +113,8 @@ const RegisterForm = () => {
           </div>
           <input
             type="text"
-            value={empresa}
-            onChange={(e) => setEmpresa(e.target.value)}
+            value={aserradero}
+            onChange={(e) => setAserradero(e.target.value)}
             placeholder="Nombre empresa"
             className="input input-bordered w-full max-w-xs"
           />

@@ -1,5 +1,7 @@
-export const passwordChange = async (usuario: IUsuario | undefined) => {
-    const url = `http://localhost:3000/api/usuarios/passwordchange`;
+import { IUser } from "@/types/tipos";
+
+export const passwordChange = async (usuario: IUser | undefined) => {
+    const url = `http://localhost:3000/api/users/passwordchange`;
     try {
       const res = await fetch(url, {
         method: "PUT",
