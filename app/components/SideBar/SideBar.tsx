@@ -1,3 +1,4 @@
+import { SideBarAdmin } from "./SideBarAdmin";
 import { SideBarInicio } from "./SideBarInicio";
 import { SideBarProduccion } from "./SideBarProduccion";
 import { SideBarRollos } from "./SideBarRollos";
@@ -9,6 +10,7 @@ export function SideBar() {
       <SideBarInicio />
       <SideBarTablas />
       <SideBarProduccion />
+      <SideBarAdmin />
     </div>
   )
 }

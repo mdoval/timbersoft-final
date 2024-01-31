@@ -33,7 +33,7 @@ model user {
   password String
   aserradero aserradero @relation(fields: [aserraderoId], references: [id])
   aserraderoId Int
-  avatar String @default("http://localhost:3000/images/dark-noimagen.jpg")
+  avatar String @default("http://localhost:3000/images/noimage.jpg")
 }
 
 model remito {

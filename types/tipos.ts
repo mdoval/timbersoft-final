@@ -87,7 +87,7 @@ export interface IUser {
   createdAt?: Date
   updatedAt?: Date
   email?: string
-  nombre?: string
+  name?: string
   password?: string
   aserradero?: string
 }

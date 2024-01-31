@@ -3,14 +3,24 @@ import { NextResponse } from "next/server";
 
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
+import { getUsuarioLogueado } from "@/utils/getUsuarioLogueado";
 
 export async function GET( request ) {
-    const session = await getServerSession(authOptions);    
-    console.log("Mi Session "+JSON.stringify(session))
+    //const session = await getServerSession(authOptions);    
+    const usr = await getUsuarioLogueado()
+    const aserraderoId = usr.aserraderoId
+    //console.log(usr)
+    //console.log("Mi Session "+JSON.stringify(session))
     
+    let users = []
+
     try {
-        const proveedores = await prisma.proveedor.findMany()
-        return NextResponse.json(proveedores)        
+        users = await prisma.user.findMany({
+            where: {
+                aserraderoId: aserraderoId
+            }
+        })
+        return NextResponse.json(users)        
     } catch (error) {
         console.log(error)
     }
