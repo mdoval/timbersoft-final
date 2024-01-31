@@ -31,7 +31,7 @@ const RegisterForm = () => {
         const usuario: IUser = {
           email: email,
           password: password,
-          nombre: nombre,
+          name: nombre,
           aserradero: aserradero
         }
           const res = await registrarUsuario(usuario)      
