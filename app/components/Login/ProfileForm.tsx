@@ -27,7 +27,7 @@ const ProfileForm: FC<Props> = ({ user }) => {
     try {
       const usuario: IUser = {
         id: user.id,
-        nombre: nombre,
+        name: nombre,
       };
       const res = await updateUsuario(usuario);
       router.push("/dashboard");
