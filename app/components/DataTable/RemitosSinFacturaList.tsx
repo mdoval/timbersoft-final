@@ -2,7 +2,7 @@
 
 import { getRemitosSinFactura } from "@/utils/getRemitosSinFactura";
 import { FC, useEffect, useState } from "react";
-import ItemRemitoSinFactura from "./ItemRemitoSinFactura";
+import ItemRemitoSinFactura from "@/app/components/DataTable";
 import { remito } from "@prisma/client";
 
 interface Props {
