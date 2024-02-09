@@ -58,7 +58,6 @@ export interface IRemito {
 export interface IRollo {
   id?: number;
   categoriaId: number | undefined;
-  calidadId: number | undefined;
   largoId: number | undefined;
   toneladas: number;
   unidades: number;
@@ -69,7 +68,6 @@ export interface IRollo {
 
 export interface IRolloUI {
   categoria: ICategoria | undefined;
-  calidad: ICalidad | undefined;
   largo: ILargo | undefined;
   toneladas: number;
   unidades: number;

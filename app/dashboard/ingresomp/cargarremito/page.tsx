@@ -1,13 +1,11 @@
 import RemitoForm from "@/app/components/Forms/RemitoForm";
 import {
-  ICalidad,
   ICategoria,
   IDestino,
   ILargo,
   IProveedor,
   ITransportista,
 } from "@/types/tipos";
-import { getCalidades } from "@/utils/getCalidades";
 import { getCategorias } from "@/utils/getCategorias";
 import { getDestinos } from "@/utils/getDestinos";
 import { getLargos } from "@/utils/getLargos";
@@ -20,7 +18,6 @@ export default async function CargarRemito() {
   const transportistas: ITransportista[] = await getTransportistas();
   const categorias: ICategoria[] = await getCategorias();
   const largos: ILargo[] = await getLargos();
-  const calidades: ICalidad[] = await getCalidades();
 
   return (
     <div className="bg-white p-2 shadow-xl h-full p-5 flex flex-col">
@@ -32,7 +29,6 @@ export default async function CargarRemito() {
         transportistas={transportistas}
         categorias={categorias}        
         largos={largos}
-        calidades={calidades}
       />
     </div>
   );

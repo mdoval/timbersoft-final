@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  ICalidad,
   ICategoria,
   IDestino,
   ILargo,
@@ -10,7 +9,6 @@ import {
   IRolloUI,
   ITransportista,
 } from "@/types/tipos";
-import { addRemito } from "@/utils/remitosFunctions";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FC, useState } from "react";
 import AddRollo from "../Buttons/AddRollo";
@@ -23,7 +21,6 @@ interface RemitoFormProps {
   transportistas: ITransportista[];
   categorias: ICategoria[];
   largos: ILargo[];
-  calidades: ICalidad[];
 }
 
 const today = () => {
@@ -51,7 +48,6 @@ const RemitoForm: FC<RemitoFormProps> = ({
   destinos,
   transportistas,
   categorias,
-  calidades,
   largos,
 }) => {
   const router = useRouter();
@@ -252,7 +248,6 @@ const RemitoForm: FC<RemitoFormProps> = ({
         <AddRollo
           categorias={categorias}
           largos={largos}
-          calidades={calidades}
           addRollo={agregarRollos}
         />
       </div>

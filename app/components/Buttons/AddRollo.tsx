@@ -5,14 +5,12 @@ import ModalFlex from "../Modal/ModalFlex";
 interface AddRolloProps {
   categorias: ICategoria[];
   largos: ILargo[];
-  calidades: ICalidad[];
   addRollo: (nuevoRollo: IRolloUI) => void;
 }
 
-const AddRollo: FC<AddRolloProps> = ({ categorias, largos, calidades, addRollo }) => {
+const AddRollo: FC<AddRolloProps> = ({ categorias, largos, addRollo }) => {
   const [categoria, setCategoria] = useState<ICategoria>(categorias[0]);
   const [largo, setLargo] = useState<ILargo>(largos[0]);
-  const [calidad, setCalidad] = useState<ICalidad>(calidades[0]);
   const [toneladas, setToneladas] = useState<number>(0);
   const [unidades, setUnidades] = useState<number>(0);
   const [precio, setPrecio] = useState<number>(0);
@@ -23,7 +21,6 @@ const AddRollo: FC<AddRolloProps> = ({ categorias, largos, calidades, addRollo }
     const rollo: IRolloUI = {
       categoria: categoria,
       largo: largo,
-      calidad: calidad,
       toneladas: toneladas,
       unidades: unidades,
       precio: precio,
@@ -37,7 +34,6 @@ const AddRollo: FC<AddRolloProps> = ({ categorias, largos, calidades, addRollo }
   const initValue = () => {
     setCategoria(categorias[0])
     setLargo(largos[0])
-    setCalidad(calidades[0])
     setToneladas(0)
     setUnidades(0)
     setPrecio(0)
@@ -52,11 +48,6 @@ const AddRollo: FC<AddRolloProps> = ({ categorias, largos, calidades, addRollo }
   const handleLargosChange = (e: ChangeEvent<HTMLSelectElement>) => {    
     const largoEncontrado = largos.find(largo => largo.id === Number(e.target.value)) as ILargo
     setLargo(largoEncontrado)
-  }
-
-  const handleCalidadChange = (e: ChangeEvent<HTMLSelectElement>) => {    
-    const calidadEncontrada = calidades.find(calidad => calidad.id === Number(e.target.value)) as ICalidad
-    setCalidad(calidadEncontrada)
   }
 
   return (
@@ -108,24 +99,6 @@ const AddRollo: FC<AddRolloProps> = ({ categorias, largos, calidades, addRollo }
                   return (
                     <option key={largo.id} value={largo.id}>
                       {largo.tamanio}
-                    </option>
-                  );
-                })}
-              </select>
-            </label>
-            <label className="form-control w-full max-w-xs">
-              <div className="label">
-                <span className="label-text">Calidad</span>
-              </div>
-              <select
-                className="select select-bordered"
-                defaultValue={calidad.id}
-                onChange={handleCalidadChange}
-              >
-                {calidades.map((calidad) => {
-                  return (
-                    <option key={calidad.id} value={calidad.id}>
-                      {calidad.nombre}
                     </option>
                   );
                 })}

@@ -13,7 +13,6 @@ const RollosList: FC<RollosListProps> = ({ rollos }) => {
           <tr>
             <th>Cat</th>
             <th>Largo</th>
-            <th>Calidad</th>
             <th>Ton</th>
             <th>Unidades</th>
             <th>Precio</th>
@@ -26,7 +25,6 @@ const RollosList: FC<RollosListProps> = ({ rollos }) => {
               <tr key={index} className="hover">
                 <th>{rollo.categoria?.nombre}</th>
                 <td>{rollo.largo?.tamanio}</td>
-                <td>{rollo.calidad?.nombre}</td>
                 <td>{rollo.toneladas}</td>
                 <td>{rollo.unidades}</td>
                 <td>{rollo.precio}</td>

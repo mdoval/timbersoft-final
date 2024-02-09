@@ -11,6 +11,7 @@ export async function POST( request ) {
 
     try {        
         const data = await request.json()
+//        console.log(data)
         Object.assign(data, {aserraderoId: aserraderoId})
         const rollo = await prisma.rollo.create(({data: data}))
         return NextResponse.json(rollo)

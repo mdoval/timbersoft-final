@@ -11,12 +11,12 @@ export default async function addRemitoRollos (remito:IRemito, rollos: IRolloUI[
     })
     const newRemito = await data.json() 
 
-//    console.log(newRemito)
+    console.log(rollos)
     
     rollos.map(async (rollo: IRolloUI) => {
+        console.log(rollo)
         const newRollo: IRollo = {
             categoriaId: rollo.categoria?.id,
-            calidadId: rollo.calidad?.id,
             largoId: rollo.largo?.id,
             toneladas: rollo.toneladas,
             unidades: rollo.unidades,
@@ -25,7 +25,6 @@ export default async function addRemitoRollos (remito:IRemito, rollos: IRolloUI[
             remitoId: newRemito.id,
         }                
         const rolloGuardado = await addRollo(newRollo)
-//        console.log(rolloGuardado)
     })
     return(JSON.stringify(newRemito))
 }
