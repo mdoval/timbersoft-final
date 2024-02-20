@@ -22,6 +22,7 @@ model aserradero {
   largos largo[]
   calidades calidad[]
   transportistas transportista[]
+  paquetes paquete[]
 }
 
 model user {
@@ -34,6 +35,7 @@ model user {
   aserradero aserradero @relation(fields: [aserraderoId], references: [id])
   aserraderoId Int
   avatar String @default("http://localhost:3000/images/noimage.jpg")
+  paquetes paquete[]
 }
 
 model remito {
@@ -115,4 +117,27 @@ model calidad {
   nombre String
   aserradero aserradero @relation(fields: [aserraderoId], references: [id])
   aserraderoId Int
+}
+
+model estado {
+  id Int @id @default(autoincrement())
+  descripcion String
+  paquetes paquete[]
+}
+
+
+model paquete {
+  id Int @id @default(autoincrement())
+  aserradero aserradero @relation(fields: [aserraderoId], references: [id])
+  aserraderoId Int
+  espesor Int
+  ancho Int
+  largo Int
+  cantidad Int
+  estado estado @relation(fields: [estadoId], references: [id])
+  estadoId Int
+  user user @relation(fields: [userId], references: [id])
+  userId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
