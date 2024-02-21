@@ -10,7 +10,8 @@ const PaqueteFormMobile = () => {
           <span className="label-text">Espesor</span>
         </div>
         <input
-          type="numeric"
+          type="number"
+          inputMode="tel"
           placeholder="Ingrese aqui"
           className="input input-bordered w-full max-w-xs"
         />
@@ -21,7 +22,8 @@ const PaqueteFormMobile = () => {
           <span className="label-text">Ancho</span>
         </div>
         <input
-          type="numeric"
+          inputMode="numeric"
+          type="number"
           placeholder="Ingrese aqui"
           className="input input-bordered w-full max-w-xs"
         />
@@ -32,7 +34,7 @@ const PaqueteFormMobile = () => {
           <span className="label-text">Largo</span>
         </div>
         <input
-          type="numeric"
+          type="number"
           placeholder="Ingrese aqui"
           className="input input-bordered w-full max-w-xs"
         />
@@ -43,7 +45,7 @@ const PaqueteFormMobile = () => {
           <span className="label-text">Cantidad</span>
         </div>
         <input
-          type="numeric"
+          type="number"
           placeholder="Ingrese aqui"
           className="input input-bordered w-full max-w-xs"
         />
