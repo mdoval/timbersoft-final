@@ -23,7 +23,6 @@ export async function GET(request) {
                                 rollos: {
                                     include: {
                                         categoria: true,
-                                        calidad: true, 
                                         largo: true
                                     }
                                 },
