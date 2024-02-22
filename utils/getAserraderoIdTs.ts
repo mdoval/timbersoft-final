@@ -1,4 +1,4 @@
-export const getAserraderoId = async (email: string | null | undefined) => {
+export const getAserraderoIdTs = async (email: string) => {
     const url = `${process.env.siteUrl}/api/users/${email}`
     //console.log(url)
     const data = await fetch(url) 

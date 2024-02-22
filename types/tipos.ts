@@ -93,3 +93,15 @@ export interface IUser {
 export interface IError {
   message: string
 }
+
+export interface IPaquete {
+  espesor: number
+  ancho: number
+  largo: number
+  cantidad: number
+  estado?: number
+  aserraderoId?: number
+  userId?:  number
+  createdAt?: Date
+  updatedAt?: Date
+}
