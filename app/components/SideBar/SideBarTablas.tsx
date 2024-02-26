@@ -46,6 +46,9 @@ export function SideBarTablas() {
           <Link href="/dashboard/largos" className="sidebar_subitem">
             Largos
           </Link>
+          <Link href="/dashboard/tipos" className="sidebar_subitem">
+            Tipos
+          </Link>
         </div>
       </div>
     </div>

@@ -23,6 +23,7 @@ model aserradero {
   calidades calidad[]
   transportistas transportista[]
   paquetes paquete[]
+  tipos tipo[]
 }
 
 model user {
@@ -117,6 +118,7 @@ model calidad {
   nombre String
   aserradero aserradero @relation(fields: [aserraderoId], references: [id])
   aserraderoId Int
+  paquetes paquete[]
 }
 
 model estado {
@@ -125,6 +127,14 @@ model estado {
   paquetes paquete[]
 }
 
+model tipo {
+  id Int @id @default(autoincrement())
+  aserradero aserradero @relation(fields: [aserraderoId], references: [id])
+  aserraderoId Int
+  catalogo String
+  descripcion String
+  paquetes paquete[]
+}
 
 model paquete {
   id Int @id @default(autoincrement())
@@ -136,6 +146,11 @@ model paquete {
   cantidad Int
   estado estado @relation(fields: [estadoId], references: [id])
   estadoId Int
+  calidad calidad @relation(fields: [calidadId], references: [id])
+  calidadId Int
+  tipo tipo @relation(fields: [tipoId], references: [id])
+  tipoId Int
+
   user user @relation(fields: [userId], references: [id])
   userId Int
   createdAt DateTime @default(now())

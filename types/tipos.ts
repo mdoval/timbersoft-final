@@ -100,8 +100,16 @@ export interface IPaquete {
   largo: number
   cantidad: number
   estado?: number
+  calidad?:  ICalidad
+  tipo?: ITipo
   aserraderoId?: number
   userId?:  number
   createdAt?: Date
   updatedAt?: Date
+}
+
+export interface ITipo {
+  id?: number;
+  catalogo: string;
+  descripcion: string;
 }
