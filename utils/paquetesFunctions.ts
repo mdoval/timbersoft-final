@@ -1,6 +1,6 @@
 import { IPaquete } from "@/types/tipos";
 
-export const addPaquete = async ( paquete: IPaquete): Promise<IPaquete> => {
+export const addPaquete = async (paquete: IPaquete): Promise<IPaquete> => {
   const newPaquete = await fetch(`${process.env.siteUrl}/api/paquetes/add`,
     {
       method: "POST",
