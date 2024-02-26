@@ -2,26 +2,26 @@
 -- DROP INDEX `remito_aserraderoId_fkey` ON `remito`;
 
 -- DropIndex
-DROP INDEX `remito_destinoId_fkey` ON `remito`;
+-- DROP INDEX `remito_destinoId_fkey` ON `remito`;
 
 -- DropIndex
-DROP INDEX `remito_proveedorId_fkey` ON `remito`;
+-- DROP INDEX `remito_proveedorId_fkey` ON `remito`;
+ 
+-- DropIndex
+-- DROP INDEX `remito_transportistaId_fkey` ON `remito`;
 
 -- DropIndex
-DROP INDEX `remito_transportistaId_fkey` ON `remito`;
+-- DROP INDEX `rollo_aserraderoId_fkey` ON `rollo`;
+ 
+-- DropIndex
+-- DROP INDEX `rollo_categoriaId_fkey` ON `rollo`;
 
 -- DropIndex
-DROP INDEX `rollo_aserraderoId_fkey` ON `rollo`;
-
+-- DROP INDEX `rollo_largoId_fkey` ON `rollo`;
+ 
 -- DropIndex
-DROP INDEX `rollo_categoriaId_fkey` ON `rollo`;
-
--- DropIndex
-DROP INDEX `rollo_largoId_fkey` ON `rollo`;
-
--- DropIndex
-DROP INDEX `user_aserraderoId_fkey` ON `user`;
-
+-- DROP INDEX `user_aserraderoId_fkey` ON `user`;
+ 
 -- AddForeignKey
 ALTER TABLE `user` ADD CONSTRAINT `user_aserraderoId_fkey` FOREIGN KEY (`aserraderoId`) REFERENCES `aserradero`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
