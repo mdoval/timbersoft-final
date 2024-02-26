@@ -1,5 +1,5 @@
 -- DropIndex
-DROP INDEX `remito_aserraderoId_fkey` ON `remito`;
+-- DROP INDEX `remito_aserraderoId_fkey` ON `remito`;
 
 -- DropIndex
 DROP INDEX `remito_destinoId_fkey` ON `remito`;
