@@ -55,9 +55,7 @@ const RemitoForm: FC<RemitoFormProps> = ({
   const [numeroRemito, setNumeroRemito] = useState<number>(0);
   const [proveedor, setProveedor] = useState<IProveedor>(proveedores[0]);
   const [destino, setDestino] = useState<IDestino>(destinos[0]);
-  const [transportista, setTransportista] = useState<ITransportista>(
-    transportistas[0]
-  );
+  const [transportista, setTransportista] = useState<ITransportista>(transportistas[0]);
   const [tarifa, setTarifa] = useState<number>(0);
   const [flete, setFlete] = useState<number>(0);
   const [factura, setFactura] = useState<string>("");
@@ -76,7 +74,7 @@ const RemitoForm: FC<RemitoFormProps> = ({
     };
     
     const remitoGuardado = await addRemitoRollos(remito, rollos);
-    console.log(remitoGuardado);
+    //console.log(remitoGuardado);
     router.push("/dashboard/ingresomp/");
     router.refresh();
   };
@@ -100,7 +98,7 @@ const RemitoForm: FC<RemitoFormProps> = ({
 
   const handleTransportistaChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const transportistaEncontrado = transportistas.find(transportista => transportista.id === Number(e.target.value)) as ITransportista
-    setProveedor(transportistaEncontrado)
+    setTransportista(transportistaEncontrado)
   }
 
   return (
@@ -184,7 +182,7 @@ const RemitoForm: FC<RemitoFormProps> = ({
             </div>
             <select
               className="select select-bordered"
-              defaultValue={transportista.id}
+              defaultValue={transportista?.id}
               onChange={handleTransportistaChange}
             >
               {transportistas.map((transportista) => {

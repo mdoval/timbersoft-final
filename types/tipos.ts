@@ -35,6 +35,12 @@ export interface ICalidad {
   nombre: string;
 }
 
+export interface IEstado {
+  id?: number;
+  desacripcion: string;
+}
+
+
 export interface ILargo {
   id?: number;
   tamanio: number;
@@ -99,14 +105,16 @@ export interface IPaquete {
   ancho: number
   largo: number
   cantidad: number
-  estado?: number
-  calidad?:  ICalidad
-  tipo?: ITipo
-  aserraderoId?: number
-  userId?:  number
+  estadoId?: number | undefined;
+  calidadId?: number | undefined;
+  tipoId?: number | undefined;
   createdAt?: Date
   updatedAt?: Date
+  calidad?:  ICalidad
+  estado?: IEstado
+  tipo?: ITipo
 }
+
 
 export interface ITipo {
   id?: number;

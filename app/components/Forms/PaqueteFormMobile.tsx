@@ -1,6 +1,8 @@
 "use client";
 
 import { ICalidad, IPaquete, ITipo } from "@/types/tipos";
+import { addPaquete } from "@/utils/paquetesFunctions";
+import { useRouter } from "next/navigation";
 import React, { ChangeEvent, FC, useRef, useState } from "react";
 
 interface PaqueteFormProps {
@@ -9,6 +11,7 @@ interface PaqueteFormProps {
 }
 
 const PaqueteFormMobile: FC<PaqueteFormProps> = ({calidades, tipos}) => {
+  const router = useRouter()
   const [paquete, setPaquete] = useState<IPaquete>({
     espesor: 0,
     largo: 0,
@@ -19,7 +22,6 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({calidades, tipos}) => {
   });
   const [calidad, setCalidad] = useState<ICalidad>(calidades[0]);
   const [tipo, setTipo] = useState<ITipo>(tipos[0]);
-  
   const inputEspesorRef = useRef<HTMLInputElement>(null);
   const inputAnchoRef = useRef<HTMLInputElement>(null);
   const inputLargoRef = useRef<HTMLInputElement>(null);
@@ -58,7 +60,19 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({calidades, tipos}) => {
   };
 
   const handleCargarPaquete = async () => {
-    
+    const newPaquete: IPaquete = {
+      espesor: paquete.espesor,
+      ancho: paquete.ancho,
+      largo: paquete.largo,
+      cantidad: paquete.cantidad,      
+      calidadId: calidad.id,
+      tipoId: tipo.id,
+      estadoId: 1
+    }
+    const remitoGuardado = await addPaquete(newPaquete);
+    router.push("/mobile/cargapaquetes/cargar");
+    router.refresh();
+
   }
 
   const handleCalidadChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -180,7 +194,7 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({calidades, tipos}) => {
       </label>
 
       <div>
-        <button className="btn btn-wide btn-primary m-2">Guardar</button>
+        <button className="btn btn-wide btn-primary m-2" onClick={handleCargarPaquete}>Guardar</button>
       </div>
     </div>
   );

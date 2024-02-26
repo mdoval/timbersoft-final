@@ -138,19 +138,18 @@ model tipo {
 
 model paquete {
   id Int @id @default(autoincrement())
-  aserradero aserradero @relation(fields: [aserraderoId], references: [id])
-  aserraderoId Int
   espesor Int
   ancho Int
   largo Int
   cantidad Int
-  estado estado @relation(fields: [estadoId], references: [id])
-  estadoId Int
-  calidad calidad @relation(fields: [calidadId], references: [id])
-  calidadId Int
   tipo tipo @relation(fields: [tipoId], references: [id])
   tipoId Int
-
+  estado estado @relation(fields: [estadoId], references: [id])
+  estadoId Int
+  aserradero aserradero @relation(fields: [aserraderoId], references: [id])
+  aserraderoId Int
+  calidad calidad @relation(fields: [calidadId], references: [id])
+  calidadId Int
   user user @relation(fields: [userId], references: [id])
   userId Int
   createdAt DateTime @default(now())
