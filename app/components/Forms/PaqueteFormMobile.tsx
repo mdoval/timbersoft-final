@@ -1,7 +1,7 @@
 "use client";
 
 import { ICalidad, IPaquete, ITipo } from "@/types/tipos";
-import { addPaquete } from "@/utils/paquetesFunctions";
+import addPaquete from "@/utils/paquetesFunctions";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, FC, useRef, useState } from "react";
 
@@ -26,7 +26,7 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({ calidades, tipos }) => {
   const inputAnchoRef = useRef<HTMLInputElement>(null);
   const inputLargoRef = useRef<HTMLInputElement>(null);
   const inputCantidadRef = useRef<HTMLInputElement>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleClickEspesor = () => {
     if (inputEspesorRef.current) {
@@ -80,6 +80,7 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({ calidades, tipos }) => {
     };
     try {
       const remitoGuardado = await addPaquete(newPaquete);
+      console.log(remitoGuardado)
       setPaquete({
         espesor: 0,
         largo: 0,
@@ -90,6 +91,7 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({ calidades, tipos }) => {
       });
       router.refresh();
       router.push("/mobile/cargapaquetes/cargar");
+      setLoading(false)
     } catch (error) {
       console.log(error);
     }
@@ -228,7 +230,7 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({ calidades, tipos }) => {
 
       <dialog
         id="my_modal_1"
-        className={`modal ${loading ? "" : "modal-open"}`}
+        className={`modal ${loading ?  "modal-open" : ""}`}
       >
         <div className="modal-box text-center">
           <span className="loading loading-spinner loading-lg mt-10 mb-10"></span>
