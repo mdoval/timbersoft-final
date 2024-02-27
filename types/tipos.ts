@@ -37,7 +37,7 @@ export interface ICalidad {
 
 export interface IEstado {
   id?: number;
-  desacripcion: string;
+  descripcion: string;
 }
 
 
@@ -101,6 +101,7 @@ export interface IError {
 }
 
 export interface IPaquete {
+  id?: number
   espesor: number
   ancho: number
   largo: number

@@ -36,6 +36,9 @@ export function SideBarProduccion() {
         <Link href="/dashboard/remitos" className="sidebar_subitem">
           Remitos
         </Link>
+        <Link href="/dashboard/etiquetas" className="sidebar_subitem">
+          Etiquetas
+        </Link>
         <div className="sidebar_subitem">Consumo MP</div>
         <div className="sidebar_subitem">Alta de Produccion</div>
         <div className="sidebar_subitem">Clasificacion</div>

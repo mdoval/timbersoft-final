@@ -80,7 +80,7 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({ calidades, tipos }) => {
     };
     try {
       const remitoGuardado = await addPaquete(newPaquete);
-      console.log(remitoGuardado)
+      //console.log(remitoGuardado)
       setPaquete({
         espesor: 0,
         largo: 0,
@@ -89,6 +89,8 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({ calidades, tipos }) => {
         calidad: undefined,
         tipo: undefined,
       });
+      setCalidad(calidades[0])
+      setTipo(tipos[0])
       router.refresh();
       router.push("/mobile/cargapaquetes/cargar");
       setLoading(false)
