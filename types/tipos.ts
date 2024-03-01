@@ -46,6 +46,21 @@ export interface ILargo {
   tamanio: number;
 }
 
+export interface ILargoPaquete {
+  id?: number;
+  tamanio: number;
+}
+
+export interface IAnchoPaquete {
+  id?: number;
+  tamanio: number;
+}
+
+export interface IEspesorPaquete {
+  id?: number;
+  tamanio: number;
+}
+
 export interface IRemito {
   id?: number;
   fechaIngreso: Date;
@@ -102,9 +117,9 @@ export interface IError {
 
 export interface IPaquete {
   id?: number
-  espesor: number
-  ancho: number
-  largo: number
+  espesorId?: number | undefined;
+  anchoId?: number | undefined;
+  largoId?: number | undefined;
   cantidad: number
   estadoId?: number | undefined;
   calidadId?: number | undefined;
@@ -114,6 +129,9 @@ export interface IPaquete {
   calidad?:  ICalidad
   estado?: IEstado
   tipo?: ITipo
+  ancho?: IAnchoPaquete
+  largo?: ILargoPaquete
+  espesor?: IEspesorPaquete
 }
 
 

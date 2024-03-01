@@ -24,9 +24,9 @@ model aserradero {
   transportistas transportista[]
   paquetes paquete[]
   tipos tipo[]
-  largoPaquete largoPaquete[]
-  espesorPaquete espesorPaquete[]
-  anchoPaquete anchoPaquete[]
+  largosPaquete largoPaquete[]
+  espesoresPaquete espesorPaquete[]
+  anchosPaquete anchoPaquete[]
 }
 
 model user {

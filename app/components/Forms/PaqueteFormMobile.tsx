@@ -1,6 +1,6 @@
 "use client";
 
-import { ICalidad, IPaquete, ITipo } from "@/types/tipos";
+import { IAnchoPaquete, ICalidad, IEspesorPaquete, ILargoPaquete, IPaquete, ITipo } from "@/types/tipos";
 import addPaquete from "@/utils/paquetesFunctions";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, FC, useRef, useState } from "react";
@@ -8,43 +8,28 @@ import React, { ChangeEvent, FC, useRef, useState } from "react";
 interface PaqueteFormProps {
   calidades: ICalidad[];
   tipos: ITipo[];
+  largos: ILargoPaquete[];
+  anchos: IAnchoPaquete[];
+  espesores: IEspesorPaquete[];
 }
 
-const PaqueteFormMobile: FC<PaqueteFormProps> = ({ calidades, tipos }) => {
+const PaqueteFormMobile: FC<PaqueteFormProps> = ({ calidades, tipos, largos, anchos, espesores }) => {
   const router = useRouter();
   const [paquete, setPaquete] = useState<IPaquete>({
-    espesor: 0,
-    largo: 0,
-    ancho: 0,
+    espesor: undefined,
+    largo: undefined,
+    ancho: undefined,
     cantidad: 0,
     calidad: undefined,
     tipo: undefined,
   });
   const [calidad, setCalidad] = useState<ICalidad>(calidades[0]);
   const [tipo, setTipo] = useState<ITipo>(tipos[0]);
-  const inputEspesorRef = useRef<HTMLInputElement>(null);
-  const inputAnchoRef = useRef<HTMLInputElement>(null);
-  const inputLargoRef = useRef<HTMLInputElement>(null);
+  const [ancho, setAncho] = useState<IAnchoPaquete>(anchos[0]);
+  const [largo, setLargo] = useState<ILargoPaquete>(largos[0]);
+  const [espesor, setEspesor] = useState<IEspesorPaquete>(espesores[0]);
   const inputCantidadRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
-
-  const handleClickEspesor = () => {
-    if (inputEspesorRef.current) {
-      inputEspesorRef.current.select();
-    }
-  };
-
-  const handleClickAncho = () => {
-    if (inputAnchoRef.current) {
-      inputAnchoRef.current.select();
-    }
-  };
-
-  const handleClickLargo = () => {
-    if (inputLargoRef.current) {
-      inputLargoRef.current.select();
-    }
-  };
 
   const handleClickCantidad = () => {
     if (inputCantidadRef.current) {
@@ -70,25 +55,27 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({ calidades, tipos }) => {
   const handleCargarPaquete = async () => {
     setLoading(true);
     const newPaquete: IPaquete = {
-      espesor: paquete.espesor,
-      ancho: paquete.ancho,
-      largo: paquete.largo,
+      espesorId: espesor.id,
+      anchoId: ancho.id,
+      largoId: largo.id,
       cantidad: paquete.cantidad,
       calidadId: calidad.id,
       tipoId: tipo.id,
       estadoId: 1,
     };
     try {
-      const remitoGuardado = await addPaquete(newPaquete);
-      //console.log(remitoGuardado)
+      const paqueteGuardado = await addPaquete(newPaquete);
       setPaquete({
-        espesor: 0,
-        largo: 0,
-        ancho: 0,
+        espesor: undefined,
+        largo: undefined,
+        ancho: undefined,
         cantidad: 0,
         calidad: undefined,
         tipo: undefined,
       });
+      setEspesor(espesores[0])
+      setLargo(largos[0])
+      setAncho(anchos[0])
       setCalidad(calidades[0])
       setTipo(tipos[0])
       router.refresh();
@@ -106,6 +93,27 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({ calidades, tipos }) => {
     setCalidad(tipoEncontrado);
   };
 
+  const handleLargoChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const tipoEncontrado = largos.find(
+      (largo) => largo.id === Number(e.target.value)
+    ) as ILargoPaquete;
+    setLargo(tipoEncontrado);
+  };
+
+  const handleAnchoChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const tipoEncontrado = anchos.find(
+      (ancho) => ancho.id === Number(e.target.value)
+    ) as IAnchoPaquete;
+    setAncho(tipoEncontrado);
+  };
+
+  const handleEspesorChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const tipoEncontrado = espesores.find(
+      (espesor) => espesor.id === Number(e.target.value)
+    ) as IEspesorPaquete;
+    setEspesor(tipoEncontrado);
+  };
+
   const handleTipoChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const tipoEncontrado = tipos.find(
       (tipo) => tipo.id === Number(e.target.value)
@@ -115,55 +123,62 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({ calidades, tipos }) => {
 
   return (
     <div className="w-full flex flex-col items-center space-y-4">
-      <label className="form-control w-full max-w-xs">
-        <div className="label">
-          <span className="label-text text-1xl font-bold">Espesor</span>
-        </div>
-        <input
-          inputMode="tel"
-          type="number"
-          name="espesor"
-          value={paquete?.espesor}
-          onChange={handleChange}
-          ref={inputEspesorRef}
-          onClick={handleClickEspesor}
-          placeholder="Ingrese aqui"
-          className="input input-bordered w-full max-w-xs"
-        />
-      </label>
-
+      
       <label className="form-control w-full max-w-xs">
         <div className="label">
           <span className="label-text text-1xl font-bold">Ancho</span>
         </div>
-        <input
-          inputMode="tel"
-          type="number"
-          name="ancho"
-          value={paquete?.ancho}
-          onChange={handleChange}
-          ref={inputAnchoRef}
-          onClick={handleClickAncho}
-          placeholder="Ingrese aqui"
-          className="input input-bordered w-full max-w-xs"
-        />
+        <select
+          className="select select-bordered"
+          defaultValue={ancho.id}
+          onChange={handleAnchoChange}
+        >
+          {anchos.map((ancho) => {
+            return (
+              <option key={ancho.id} value={ancho.id}>
+                {ancho.tamanio}
+              </option>
+            );
+          })}
+        </select>
       </label>
 
       <label className="form-control w-full max-w-xs">
         <div className="label">
           <span className="label-text text-1xl font-bold">Largo</span>
         </div>
-        <input
-          inputMode="tel"
-          type="number"
-          name="largo"
-          value={paquete?.largo}
-          onChange={handleChange}
-          ref={inputLargoRef}
-          onClick={handleClickLargo}
-          placeholder="Ingrese aqui"
-          className="input input-bordered w-full max-w-xs"
-        />
+        <select
+          className="select select-bordered"
+          defaultValue={largo.id}
+          onChange={handleLargoChange}
+        >
+          {largos.map((largo) => {
+            return (
+              <option key={largo.id} value={largo.id}>
+                {largo.tamanio}
+              </option>
+            );
+          })}
+        </select>
+      </label>
+
+      <label className="form-control w-full max-w-xs">
+        <div className="label">
+          <span className="label-text text-1xl font-bold">Espesor</span>
+        </div>
+        <select
+          className="select select-bordered"
+          defaultValue={espesor.id}
+          onChange={handleEspesorChange}
+        >
+          {espesores.map((espesor) => {
+            return (
+              <option key={espesor.id} value={espesor.id}>
+                {espesor.tamanio}
+              </option>
+            );
+          })}
+        </select>
       </label>
 
       <label className="form-control w-full max-w-xs">
