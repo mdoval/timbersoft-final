@@ -48,10 +48,10 @@ const LoginFormMobile = () => {
 
   return (
     <div className="w-full p-2 m-auto">
-      <div className="w-full font-bold text-2xl text-center">
-        Formulario de Login
+      <div className="w-full font-bold text-3xl text-center">
+        Ingresar
       </div>
-      <div>
+      <div className="p-8">
         <label className="form-control w-full max-w-xs">
           <div className="label">
             <span className="label-text font-bold">Email</span>

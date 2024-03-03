@@ -132,6 +132,7 @@ export interface IPaquete {
   anchoPaquete?: IAnchoPaquete
   largoPaquete?: ILargoPaquete
   espesorPaquete?: IEspesorPaquete
+  cantidadPaquetes?: number | undefined
 }
 
 

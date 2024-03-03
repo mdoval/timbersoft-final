@@ -20,6 +20,11 @@ interface PaqueteFormProps {
   espesores: IEspesorPaquete[];
 }
 
+interface ICantidadPaquetes {
+  id: number
+  value: number
+}
+
 const PaqueteFormMobile: FC<PaqueteFormProps> = ({
   calidades,
   tipos,
@@ -36,11 +41,13 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({
     calidad: undefined,
     tipo: undefined,
   });
+  const cantidades: ICantidadPaquetes = [{id:1, value:1},{id:2, value:2},{id:3, value:3},{id:4, value:4},{id:5, value:5}]
   const [calidad, setCalidad] = useState<ICalidad>(calidades[0]);
   const [tipo, setTipo] = useState<ITipo>(tipos[0]);
   const [ancho, setAncho] = useState<IAnchoPaquete>(anchos[0]);
   const [largo, setLargo] = useState<ILargoPaquete>(largos[0]);
   const [espesor, setEspesor] = useState<IEspesorPaquete>(espesores[0]);
+  const [cantidadPaquetes, setCantidadPaquetes] = useState<ICantidadPaquetes[]>(cantidades[0])
   const inputCantidadRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [guardado, setGuardado] = useState<boolean>(false);
@@ -142,6 +149,16 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({
     setTipo(tipoEncontrado);
   };
 
+  const handleCantidadPaquetesChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const cantidadPaquetesEncontrado = cantidadPaquetes.find(
+      (cantidadPaquetes: any) => cantidadPaquetes === Number(e.target.value)
+    ) as ITipo;
+    setTipo(cantidadPaquetesEncontrado);
+  };
+
+  
+
+
   const handleCerrarGuardado = () => {
     setGuardado(false)
   }
@@ -211,7 +228,7 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({
 
         <label className="form-control w-full max-w-xs">
           <div className="label">
-            <span className="label-text text-1xl font-bold">Cantidad</span>
+            <span className="label-text text-1xl font-bold">Piezas por paquete</span>
           </div>
           <input
             inputMode="tel"
@@ -260,6 +277,26 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({
               return (
                 <option key={tipo.id} value={tipo.id}>
                   {tipo.catalogo}
+                </option>
+              );
+            })}
+          </select>
+        </label>
+
+        <label className="form-control w-full max-w-xs">
+          <div className="label">
+            <span className="label-text text-1xl font-bold">Cantidad de Paquetes</span>
+          </div>
+          <select
+            className="select select-bordered"
+            //defaultValue={tipo?.id}
+            value={cantidadPaquetes?.id}
+            onChange={handleCantidadPaquetesChange}
+          >
+            {cantidadPaquetes.map((cantidad: any) => {
+              return (
+                <option key={cantidad} value={cantidad}>
+                  {cantidad}
                 </option>
               );
             })}
