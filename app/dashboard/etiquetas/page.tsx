@@ -7,7 +7,7 @@ const EtiquetasPage = async () => {
 
   return (
     <div className="w-full h-full flex flex-col bg-white shadow-lg p-5 spa">
-      <h1>Remitos</h1>
+      <h1>Paquetes</h1>
       <br />
       <div className="h-full w-full">
         <PaquetesList paquetes={paquetes} />

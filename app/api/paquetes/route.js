@@ -19,6 +19,9 @@ export async function GET(request) {
                     include: { 
                         paquetes: {
                             include: {
+                                largoPaquete: true,
+                                anchoPaquete: true,
+                                espesorPaquete: true,
                                 estado: true,
                                 calidad: true,
                                 tipo: true,

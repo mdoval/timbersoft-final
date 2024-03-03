@@ -13,6 +13,7 @@ export async function POST(req) {
         const data = await req.json();
         Object.assign(data, { aserraderoId: aserraderoId });
         Object.assign(data, { userId: 1 });
+        //console.log(data)
         const paquete = await prisma.paquete.create({ data: data });
         return NextResponse.json(paquete);
     } catch (error) {

@@ -117,9 +117,9 @@ export interface IError {
 
 export interface IPaquete {
   id?: number
-  espesorId?: number | undefined;
-  anchoId?: number | undefined;
-  largoId?: number | undefined;
+  espesorPaqueteId?: number | undefined;
+  anchoPaqueteId?: number | undefined;
+  largoPaqueteId?: number | undefined;
   cantidad: number
   estadoId?: number | undefined;
   calidadId?: number | undefined;
@@ -129,9 +129,9 @@ export interface IPaquete {
   calidad?:  ICalidad
   estado?: IEstado
   tipo?: ITipo
-  ancho?: IAnchoPaquete
-  largo?: ILargoPaquete
-  espesor?: IEspesorPaquete
+  anchoPaquete?: IAnchoPaquete
+  largoPaquete?: ILargoPaquete
+  espesorPaquete?: IEspesorPaquete
 }
 
 

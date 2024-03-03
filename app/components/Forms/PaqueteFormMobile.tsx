@@ -1,9 +1,16 @@
 "use client";
 
-import { IAnchoPaquete, ICalidad, IEspesorPaquete, ILargoPaquete, IPaquete, ITipo } from "@/types/tipos";
+import {
+  IAnchoPaquete,
+  ICalidad,
+  IEspesorPaquete,
+  ILargoPaquete,
+  IPaquete,
+  ITipo,
+} from "@/types/tipos";
 import addPaquete from "@/utils/paquetesFunctions";
 import { useRouter } from "next/navigation";
-import React, { ChangeEvent, FC, useRef, useState } from "react";
+import React, { ChangeEvent, FC, FormEvent, useRef, useState } from "react";
 
 interface PaqueteFormProps {
   calidades: ICalidad[];
@@ -13,7 +20,13 @@ interface PaqueteFormProps {
   espesores: IEspesorPaquete[];
 }
 
-const PaqueteFormMobile: FC<PaqueteFormProps> = ({ calidades, tipos, largos, anchos, espesores }) => {
+const PaqueteFormMobile: FC<PaqueteFormProps> = ({
+  calidades,
+  tipos,
+  largos,
+  anchos,
+  espesores,
+}) => {
   const router = useRouter();
   const [paquete, setPaquete] = useState<IPaquete>({
     espesor: undefined,
@@ -52,12 +65,12 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({ calidades, tipos, largos, anc
     }
   };
 
-  const handleCargarPaquete = async () => {
+  /*const handleCargarPaquete = async () => {
     setLoading(true);
     const newPaquete: IPaquete = {
-      espesorId: espesor.id,
-      anchoId: ancho.id,
-      largoId: largo.id,
+      espesorPaqueteId: espesor.id,
+      anchoPaqueteId: ancho.id,
+      largoPaqueteId: largo.id,
       cantidad: paquete.cantidad,
       calidadId: calidad.id,
       tipoId: tipo.id,
@@ -80,11 +93,60 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({ calidades, tipos, largos, anc
       setTipo(tipos[0])
       router.refresh();
       router.push("/mobile/cargapaquetes/cargar");
+      console.log(espesor)
       setLoading(false)
+      router.refresh();
     } catch (error) {
       console.log(error);
     }
   };
+*/
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setLoading(true); // Set loading to true when the request starts
+
+    try {
+      const newPaquete: IPaquete = {
+        espesorPaqueteId: espesor.id,
+        anchoPaqueteId: ancho.id,
+        largoPaqueteId: largo.id,
+        cantidad: paquete.cantidad,
+        calidadId: calidad.id,
+        tipoId: tipo.id,
+        estadoId: 1,
+      };
+      const paqueteGuardado = await addPaquete(newPaquete);
+
+      /*
+      const response = await fetch("/api/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      // Handle response if necessary
+      const data = await response.json();
+      // ...
+      */
+     console.log(paqueteGuardado)
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setPaquete({
+        espesor: undefined,
+        largo: undefined,
+        ancho: undefined,
+        cantidad: 0,
+        calidad: undefined,
+        tipo: undefined,
+      });
+      setEspesor(espesores[0])
+      setLargo(largos[0])
+      setAncho(anchos[0])
+      setCalidad(calidades[0])
+      setTipo(tipos[0])
+      setLoading(false); // Set loading to false when the request completes
+    }
+  }
 
   const handleCalidadChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const tipoEncontrado = calidades.find(
@@ -122,138 +184,145 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({ calidades, tipos, largos, anc
   };
 
   return (
-    <div className="w-full flex flex-col items-center space-y-4">
-      
-      <label className="form-control w-full max-w-xs">
-        <div className="label">
-          <span className="label-text text-1xl font-bold">Ancho</span>
-        </div>
-        <select
-          className="select select-bordered"
-          defaultValue={ancho.id}
-          onChange={handleAnchoChange}
-        >
-          {anchos.map((ancho) => {
-            return (
-              <option key={ancho.id} value={ancho.id}>
-                {ancho.tamanio}
-              </option>
-            );
-          })}
-        </select>
-      </label>
+    <form onSubmit={onSubmit}>
+      <div className="w-full flex flex-col items-center space-y-4">
+        <label className="form-control w-full max-w-xs">
+          <div className="label">
+            <span className="label-text text-1xl font-bold">Ancho</span>
+          </div>
+          <select
+            className="select select-bordered"
+            //defaultValue={ancho?.id}
+            value={ancho?.id}
+            onChange={handleAnchoChange}
+          >
+            {anchos.map((ancho) => {
+              return (
+                <option key={ancho.id} value={ancho.id}>
+                  {ancho.tamanio}
+                </option>
+              );
+            })}
+          </select>
+        </label>
 
-      <label className="form-control w-full max-w-xs">
-        <div className="label">
-          <span className="label-text text-1xl font-bold">Largo</span>
-        </div>
-        <select
-          className="select select-bordered"
-          defaultValue={largo.id}
-          onChange={handleLargoChange}
-        >
-          {largos.map((largo) => {
-            return (
-              <option key={largo.id} value={largo.id}>
-                {largo.tamanio}
-              </option>
-            );
-          })}
-        </select>
-      </label>
+        <label className="form-control w-full max-w-xs">
+          <div className="label">
+            <span className="label-text text-1xl font-bold">Largo</span>
+          </div>
+          <select
+            className="select select-bordered"
+            //defaultValue={largo?.id}
+            onChange={handleLargoChange}
+            value={largo?.id}
+          >
+            {largos.map((largo) => {
+              return (
+                <option key={largo.id} value={largo.id}>
+                  {largo.tamanio}
+                </option>
+              );
+            })}
+          </select>
+        </label>
 
-      <label className="form-control w-full max-w-xs">
-        <div className="label">
-          <span className="label-text text-1xl font-bold">Espesor</span>
-        </div>
-        <select
-          className="select select-bordered"
-          defaultValue={espesor.id}
-          onChange={handleEspesorChange}
-        >
-          {espesores.map((espesor) => {
-            return (
-              <option key={espesor.id} value={espesor.id}>
-                {espesor.tamanio}
-              </option>
-            );
-          })}
-        </select>
-      </label>
+        <label className="form-control w-full max-w-xs">
+          <div className="label">
+            <span className="label-text text-1xl font-bold">Espesor</span>
+          </div>
+          <select
+            className="select select-bordered"
+            //defaultValue={espesor?.id}
+            value={espesor?.id}
+            onChange={handleEspesorChange}
+          >
+            {espesores.map((espesor) => {
+              return (
+                <option key={espesor.id} value={espesor.id}>
+                  {espesor.tamanio}
+                </option>
+              );
+            })}
+          </select>
+        </label>
 
-      <label className="form-control w-full max-w-xs">
-        <div className="label">
-          <span className="label-text text-1xl font-bold">Cantidad</span>
-        </div>
-        <input
-          inputMode="tel"
-          type="number"
-          name="cantidad"
-          value={paquete?.cantidad}
-          onChange={handleChange}
-          ref={inputCantidadRef}
-          onClick={handleClickCantidad}
-          placeholder="Ingrese aqui"
-          className="input input-bordered w-full max-w-xs"
-        />
-      </label>
+        <label className="form-control w-full max-w-xs">
+          <div className="label">
+            <span className="label-text text-1xl font-bold">Cantidad</span>
+          </div>
+          <input
+            inputMode="tel"
+            type="number"
+            name="cantidad"
+            value={paquete?.cantidad}
+            onChange={handleChange}
+            ref={inputCantidadRef}
+            onClick={handleClickCantidad}
+            placeholder="Ingrese aqui"
+            className="input input-bordered w-full max-w-xs"
+          />
+        </label>
 
-      <label className="form-control w-full max-w-xs">
-        <div className="label">
-          <span className="label-text text-1xl font-bold">Calidad</span>
-        </div>
-        <select
-          className="select select-bordered"
-          defaultValue={calidad.id}
-          onChange={handleCalidadChange}
-        >
-          {calidades.map((calidad) => {
-            return (
-              <option key={calidad.id} value={calidad.id}>
-                {calidad.nombre}
-              </option>
-            );
-          })}
-        </select>
-      </label>
+        <label className="form-control w-full max-w-xs">
+          <div className="label">
+            <span className="label-text text-1xl font-bold">Calidad</span>
+          </div>
+          <select
+            className="select select-bordered"
+            //defaultValue={calidad?.id}
+            value={calidad?.id}
+            onChange={handleCalidadChange}
+          >
+            {calidades.map((calidad) => {
+              return (
+                <option key={calidad.id} value={calidad.id}>
+                  {calidad.nombre}
+                </option>
+              );
+            })}
+          </select>
+        </label>
 
-      <label className="form-control w-full max-w-xs">
-        <div className="label">
-          <span className="label-text text-1xl font-bold">Tipos</span>
-        </div>
-        <select
-          className="select select-bordered"
-          defaultValue={tipo.id}
-          onChange={handleTipoChange}
-        >
-          {tipos.map((tipo) => {
-            return (
-              <option key={tipo.id} value={tipo.id}>
-                {tipo.catalogo}
-              </option>
-            );
-          })}
-        </select>
-      </label>
+        <label className="form-control w-full max-w-xs">
+          <div className="label">
+            <span className="label-text text-1xl font-bold">Tipos</span>
+          </div>
+          <select
+            className="select select-bordered"
+            //defaultValue={tipo?.id}
+            value={tipo?.id}
+            onChange={handleTipoChange}
+          >
+            {tipos.map((tipo) => {
+              return (
+                <option key={tipo.id} value={tipo.id}>
+                  {tipo.catalogo}
+                </option>
+              );
+            })}
+          </select>
+        </label>
 
-      <div>
-        <button
-          className="btn btn-wide btn-primary m-2"
-          onClick={handleCargarPaquete}
+        <div>
+          <button
+            type="submit"
+            className="btn btn-wide btn-primary m-2"
+            //onClick={onSubmit}
+          >
+            Guardar
+          </button>
+        </div>
+
+        <dialog
+          id="my_modal_1"
+          className={`modal ${loading ? "modal-open" : ""}`}
         >
-          Guardar
-        </button>
+          <div className="modal-box text-center">
+            <span className="loading loading-spinner loading-lg mt-10 mb-10"></span>
+          </div>
+        </dialog>
       </div>
-
-      <dialog
-        id="my_modal_1"
-        className={`modal ${loading ?  "modal-open" : ""}`}
-      >
-        <div className="modal-box text-center">
-          <span className="loading loading-spinner loading-lg mt-10 mb-10"></span>
-        </div>
-      </dialog>
-    </div>
+    </form>
   );
 };
 
