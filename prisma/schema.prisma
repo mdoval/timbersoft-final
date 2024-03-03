@@ -24,9 +24,9 @@ model aserradero {
   transportistas transportista[]
   paquetes paquete[]
   tipos tipo[]
-  largosPaquete largoPaquete[]
-  espesoresPaquete espesorPaquete[]
-  anchosPaquete anchoPaquete[]
+  largosPaquete largopaquete[]
+  espesoresPaquete espesorpaquete[]
+  anchosPaquete anchopaquete[]
 }
 
 model user {
@@ -100,7 +100,7 @@ model largo {
   aserraderoId Int
 }
 
-model largoPaquete {
+model largopaquete {
   id  Int @id @default(autoincrement())
   tamanio Int
   paquete paquete[]
@@ -108,7 +108,7 @@ model largoPaquete {
   aserraderoId Int
 }
 
-model espesorPaquete {
+model espesorpaquete {
   id  Int @id @default(autoincrement())
   tamanio Int
   paquete paquete[]
@@ -116,7 +116,7 @@ model espesorPaquete {
   aserraderoId Int
 }
 
-model anchoPaquete {
+model anchopaquete {
   id  Int @id @default(autoincrement())
   tamanio Int
   paquete paquete[]
@@ -166,11 +166,11 @@ model tipo {
 
 model paquete {
   id Int @id @default(autoincrement())
-  espesorPaquete espesorPaquete @relation(fields: [espesorPaqueteId], references: [id])
+  espesorPaquete espesorpaquete @relation(fields: [espesorPaqueteId], references: [id])
   espesorPaqueteId Int
-  anchoPaquete anchoPaquete @relation(fields: [anchoPaqueteId], references: [id])
+  anchoPaquete anchopaquete @relation(fields: [anchoPaqueteId], references: [id])
   anchoPaqueteId Int
-  largoPaquete largoPaquete @relation(fields: [largoPaqueteId], references: [id])
+  largoPaquete largopaquete @relation(fields: [largoPaqueteId], references: [id])
   largoPaqueteId Int
   cantidad Int
   tipo tipo @relation(fields: [tipoId], references: [id])
