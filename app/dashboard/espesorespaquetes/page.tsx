@@ -2,7 +2,7 @@ import { getEspesoresPaquete } from "@/utils/getEspesoresPaquete";
 import EspesoresPaquetesList from "@/app/components/DataTable/EspesoresPaquetesList";
 import { AddEspesorPaquete } from "@/app/components/Buttons/AddEspesorPaquete";
 
-export default async function TransportistasPage() {
+export default async function EspesoresPaquetePage() {
   const espesores = await getEspesoresPaquete();
 
   return (

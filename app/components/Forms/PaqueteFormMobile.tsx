@@ -29,9 +29,9 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({
 }) => {
   const router = useRouter();
   const [paquete, setPaquete] = useState<IPaquete>({
-    espesor: undefined,
-    largo: undefined,
-    ancho: undefined,
+    espesorPaquete: undefined,
+    largoPaquete: undefined,
+    anchoPaquete: undefined,
     cantidad: 0,
     calidad: undefined,
     tipo: undefined,
@@ -132,9 +132,9 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({
       console.error(error);
     } finally {
       setPaquete({
-        espesor: undefined,
-        largo: undefined,
-        ancho: undefined,
+        espesorPaquete: undefined,
+        largoPaquete: undefined,
+        anchoPaquete: undefined,
         cantidad: 0,
         calidad: undefined,
         tipo: undefined,

@@ -2,7 +2,7 @@ import { getLargos } from "@/utils/getLargos";
 import LargosList from "@/app/components/DataTable/LargosList";
 import { AddLargo } from "@/app/components/Buttons/AddLargo";
 
-export default async function TransportistasPage() {
+export default async function LargosPage() {
   const largos = await getLargos();
 
   return (

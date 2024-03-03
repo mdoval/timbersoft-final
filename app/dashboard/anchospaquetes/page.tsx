@@ -2,7 +2,7 @@ import { getAnchosPaquete } from "@/utils/getAnchosPaquete";
 import { AddAnchoPaquete } from "@/app/components/Buttons/AddAnchoPaquete";
 import AnchosPaqueteList from "@/app/components/DataTable/AnchosPaquetesList";
 
-export default async function TransportistasPage() {
+export default async function AnchosPaquetePage() {
   const anchos = await getAnchosPaquete();
 
   return (

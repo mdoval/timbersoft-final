@@ -49,13 +49,13 @@ export function SideBarTablas() {
           <Link href="/dashboard/tipos" className="sidebar_subitem">
             Tipos
           </Link>
-          <Link href="/dashboard/largospaquete" className="sidebar_subitem">
+          <Link href="/dashboard/largospaquetes" className="sidebar_subitem">
             Largos de Paquete
           </Link>
-          <Link href="/dashboard/anchospaquete" className="sidebar_subitem">
+          <Link href="/dashboard/anchospaquetes" className="sidebar_subitem">
             Anchos de Paquete
           </Link>
-          <Link href="/dashboard/espesores" className="sidebar_subitem">
+          <Link href="/dashboard/espesorespaquetes" className="sidebar_subitem">
             Espesores de Paquete
           </Link>
         </div>
