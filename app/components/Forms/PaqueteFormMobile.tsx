@@ -43,6 +43,7 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({
   const [espesor, setEspesor] = useState<IEspesorPaquete>(espesores[0]);
   const inputCantidadRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [guardado, setGuardado] = useState<boolean>(false);
 
   const handleClickCantidad = () => {
     if (inputCantidadRef.current) {
@@ -65,42 +66,6 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({
     }
   };
 
-  /*const handleCargarPaquete = async () => {
-    setLoading(true);
-    const newPaquete: IPaquete = {
-      espesorPaqueteId: espesor.id,
-      anchoPaqueteId: ancho.id,
-      largoPaqueteId: largo.id,
-      cantidad: paquete.cantidad,
-      calidadId: calidad.id,
-      tipoId: tipo.id,
-      estadoId: 1,
-    };
-    try {
-      const paqueteGuardado = await addPaquete(newPaquete);
-      setPaquete({
-        espesor: undefined,
-        largo: undefined,
-        ancho: undefined,
-        cantidad: 0,
-        calidad: undefined,
-        tipo: undefined,
-      });
-      setEspesor(espesores[0])
-      setLargo(largos[0])
-      setAncho(anchos[0])
-      setCalidad(calidades[0])
-      setTipo(tipos[0])
-      router.refresh();
-      router.push("/mobile/cargapaquetes/cargar");
-      console.log(espesor)
-      setLoading(false)
-      router.refresh();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-*/
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setLoading(true); // Set loading to true when the request starts
@@ -117,20 +82,11 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({
       };
       const paqueteGuardado = await addPaquete(newPaquete);
 
-      /*
-      const response = await fetch("/api/submit", {
-        method: "POST",
-        body: formData,
-      });
-
-      // Handle response if necessary
-      const data = await response.json();
-      // ...
-      */
-     console.log(paqueteGuardado)
+      //console.log(paqueteGuardado)
     } catch (error) {
       console.error(error);
     } finally {
+      /*
       setPaquete({
         espesorPaquete: undefined,
         largoPaquete: undefined,
@@ -139,12 +95,15 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({
         calidad: undefined,
         tipo: undefined,
       });
-      setEspesor(espesores[0])
-      setLargo(largos[0])
-      setAncho(anchos[0])
-      setCalidad(calidades[0])
-      setTipo(tipos[0])
+      setEspesor(espesores[0]);
+      setLargo(largos[0]);
+      setAncho(anchos[0]);
+      setCalidad(calidades[0]);
+      setTipo(tipos[0]);
       setLoading(false); // Set loading to false when the request completes
+      */
+      router.refresh()
+      router.push("/mobile/cargapaquetes/paquetecargado")
     }
   }
 
@@ -182,6 +141,10 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({
     ) as ITipo;
     setTipo(tipoEncontrado);
   };
+
+  const handleCerrarGuardado = () => {
+    setGuardado(false)
+  }
 
   return (
     <form onSubmit={onSubmit}>
@@ -319,6 +282,18 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({
         >
           <div className="modal-box text-center">
             <span className="loading loading-spinner loading-lg mt-10 mb-10"></span>
+          </div>
+        </dialog>
+
+        <dialog
+          id="my_modal_1"
+          className={`modal ${guardado ? "modal-open" : ""}`}
+        >
+          <div className="modal-box text-center">
+            <div>
+                {/* if there is a button in form, it will close the modal */}
+                <button className="btn" onClick={handleCerrarGuardado}>Paquete Guardado</button>
+            </div>
           </div>
         </dialog>
       </div>
