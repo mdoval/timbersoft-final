@@ -185,4 +185,11 @@ model paquete {
   userId Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  etiquetas etiqueta[]
+}
+
+model etiqueta {
+  id Int @id @default(autoincrement())
+  paquete paquete @relation(fields: [paqueteId], references: [id])
+  paqueteId Int
 }
