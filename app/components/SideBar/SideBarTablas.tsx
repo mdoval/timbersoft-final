@@ -44,10 +44,19 @@ export function SideBarTablas() {
             Transportistas
           </Link>
           <Link href="/dashboard/largos" className="sidebar_subitem">
-            Largos
+            Largos Rollos
           </Link>
           <Link href="/dashboard/tipos" className="sidebar_subitem">
             Tipos
+          </Link>
+          <Link href="/dashboard/largospaquete" className="sidebar_subitem">
+            Largos de Paquete
+          </Link>
+          <Link href="/dashboard/anchospaquete" className="sidebar_subitem">
+            Anchos de Paquete
+          </Link>
+          <Link href="/dashboard/espesores" className="sidebar_subitem">
+            Espesores de Paquete
           </Link>
         </div>
       </div>
