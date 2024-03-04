@@ -7,7 +7,7 @@ interface ItemProps {
 }
 
 const ItemPaquete: React.FC<ItemProps> = ({paquete}) => {
-  console.log(paquete)
+  //console.log(paquete)
 
   let volumen_m3: number = 0
   let volumen_p2: number = 0

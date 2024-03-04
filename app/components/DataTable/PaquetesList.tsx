@@ -6,15 +6,32 @@ interface PaquetesListProps {
   paquetes: IPaquete[];
 }
 
+interface IExportados {
+  id: number
+  espesor: number
+  largo: number
+  ancho: number
+  cantidad: number
+  volumen_m3: number
+  volumen_p2: number
+  estado: string
+  tipo: string
+  calidad: string
+}
+
 const PaquetesList: React.FC<PaquetesListProps> = ({ paquetes }) => {
-  const datos: any[] = []
+  const datos: IExportados[] = []
   paquetes.map((paquete: any) => {
     let volumen_m3: number = 0
     let volumen_p2: number = 0
+    let volumen_m3_formateado: string = ""
+    let volumen_p2_formateado: string = ""
     
     if(paquete.espesorPaquete?.tamanio &&  paquete.anchoPaquete?.tamanio && paquete.largoPaquete?.tamanio ) {
-      volumen_m3 = ( paquete.espesorPaquete?.tamanio * paquete.anchoPaquete?.tamanio * paquete.largoPaquete?.tamanio ) / 1000000000
+      volumen_m3 = ( paquete.espesorPaquete?.tamanio * paquete.anchoPaquete?.tamanio * paquete.largoPaquete?.tamanio ) / 1000000000  
+      volumen_m3_formateado = volumen_m3.toFixed(2)   
       volumen_p2 = volumen_m3 * 423.77
+      volumen_p2_formateado = volumen_p2.toFixed(2)
     }
     
     datos.push(

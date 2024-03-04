@@ -8,6 +8,7 @@ interface DownloaderProps {
 }
 
 const Downloader: React.FC<DownloaderProps> = ({datos}) => {
+  //console.log(datos)
   return (
     <CSVLink className='btn btn-info' data={datos}>Descargar en CSV</CSVLink>
   )
