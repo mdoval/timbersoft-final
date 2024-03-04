@@ -41,13 +41,13 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({
     calidad: undefined,
     tipo: undefined,
   });
-  const cantidades: ICantidadPaquetes = [{id:1, value:1},{id:2, value:2},{id:3, value:3},{id:4, value:4},{id:5, value:5}]
+  const cantidadesData: ICantidadPaquetes[] = [{id:1, value:1},{id:2, value:2},{id:3, value:3},{id:4, value:4},{id:5, value:5},{id:6, value:6},{id:7, value:7},{id:8, value:8},{id:9, value:9},{id:10, value:10}]
   const [calidad, setCalidad] = useState<ICalidad>(calidades[0]);
   const [tipo, setTipo] = useState<ITipo>(tipos[0]);
   const [ancho, setAncho] = useState<IAnchoPaquete>(anchos[0]);
   const [largo, setLargo] = useState<ILargoPaquete>(largos[0]);
   const [espesor, setEspesor] = useState<IEspesorPaquete>(espesores[0]);
-  const [cantidadPaquetes, setCantidadPaquetes] = useState<ICantidadPaquetes[]>(cantidades[0])
+  const [cantidadPaquetes, setCantidadPaquetes] = useState<ICantidadPaquetes>(cantidadesData[0])
   const inputCantidadRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [guardado, setGuardado] = useState<boolean>(false);
@@ -86,6 +86,7 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({
         calidadId: calidad.id,
         tipoId: tipo.id,
         estadoId: 1,
+        cantidadPaquetes: cantidadPaquetes.value
       };
       const paqueteGuardado = await addPaquete(newPaquete);
 
@@ -150,14 +151,11 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({
   };
 
   const handleCantidadPaquetesChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const cantidadPaquetesEncontrado = cantidadPaquetes.find(
-      (cantidadPaquetes: any) => cantidadPaquetes === Number(e.target.value)
-    ) as ITipo;
-    setTipo(cantidadPaquetesEncontrado);
+    const cantidadPaqueteEncontrado = cantidadesData.find(
+      (cantidad) => cantidad.id === Number(e.target.value)
+    ) as ICantidadPaquetes;
+    setCantidadPaquetes(cantidadPaqueteEncontrado);
   };
-
-  
-
 
   const handleCerrarGuardado = () => {
     setGuardado(false)
@@ -293,10 +291,10 @@ const PaqueteFormMobile: FC<PaqueteFormProps> = ({
             value={cantidadPaquetes?.id}
             onChange={handleCantidadPaquetesChange}
           >
-            {cantidadPaquetes.map((cantidad: any) => {
+            {cantidadesData.map((cantidad: any) => {
               return (
-                <option key={cantidad} value={cantidad}>
-                  {cantidad}
+                <option key={cantidad.id} value={cantidad.id}>
+                  {cantidad.value}
                 </option>
               );
             })}

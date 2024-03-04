@@ -8,14 +8,18 @@ export async function POST(req) {
     const session = await getServerSession(authOptions);
     const userEmail = session.user.email;
     const aserraderoId = await getAserraderoId(userEmail);
-
     try {
         const data = await req.json();
+        const cantidadPaquetes = data.cantidadPaquetes
+        delete data.cantidadPaquetes
+        //console.log(cantidadPaquetes)
+        //console.log(data)
         Object.assign(data, { aserraderoId: aserraderoId });
         Object.assign(data, { userId: 1 });
-        //console.log(data)
-        const paquete = await prisma.paquete.create({ data: data });
-        return NextResponse.json(paquete);
+        for (let i = 0; i < cantidadPaquetes; i++) {
+          const paquete = await prisma.paquete.create({ data: data });
+        }
+        return NextResponse.json({message: `${cantidadPaquetes} Paquetes Creados`});
     } catch (error) {
       console.log(error);
     }
