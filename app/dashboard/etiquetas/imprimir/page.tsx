@@ -1,6 +1,6 @@
-import PaquetesList from "@/app/components/DataTable/PaquetesList";
+import EtiquetaImprimible from "@/app/components/Imprimibles/EtiquetaImprimible";
+import PrintService from "@/app/components/Imprimibles/PrintService";
 import { getPaquetes } from "@/utils/getPaquetes";
-import Link from "next/link";
 import React from "react";
 
 const EtiquetasPage = async () => {
@@ -8,12 +8,13 @@ const EtiquetasPage = async () => {
 
   return (
     <div className="w-full h-full flex flex-col bg-white shadow-lg p-5 spa">
-      <h1>Paquetes</h1>
+      <h1>Imprimir Etiquetas</h1>
       <br />
       <div className="h-full w-full">
-        <PaquetesList paquetes={paquetes} />
+        <PrintService>
+          <EtiquetaImprimible />
+        </PrintService>
       </div>
-      <Link href="/dashboard/etiquetas/imprimir">Imprimir</Link>
     </div>
   );
 };
