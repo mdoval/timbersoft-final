@@ -9,7 +9,7 @@ interface CodigoDeBarrasProps {
 
 const CodigoDeBarras: FC<CodigoDeBarrasProps> = ({dato}) => {
   return (
-    <Barcode value={dato} />
+    <Barcode height={50} value={dato} />
   )
 }
 

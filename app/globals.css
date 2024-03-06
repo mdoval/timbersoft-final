@@ -89,6 +89,10 @@
     @apply w-1/6 text-xl mr-2
   }
 
+  .paginaA4 {    
+    width: 794px; /* Ancho aproximado de una hoja A4 en píxeles */
+    height: 1123px; /* Alto aproximado de una hoja A4 en píxeles */
+  }
 
 }
 
