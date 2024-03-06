@@ -1,53 +1,30 @@
 "use client";
 
-import { ICategoria } from "@/types/tipos";
-import { useState, FC } from "react";
+import PrintService from "../components/Imprimibles/PrintService";
 
 export default function TestingPage() {
-  const [valorForm, setValorForm] = useState<number>(0);
-
-  const handleClick = () => {
-    alert(valorForm);
-  };
-
   return (
-    <div className="flex flex-col space-y-5">
-      <h1>Testing</h1>
-      <button className="btn btn-primary w-1/4" onClick={handleClick}>
-        Click
-      </button>
-      <MiSelect value={valorForm} />
+    <div>
+      Impresion
+      <PrintService>
+        <div className="print:flex print:flex-col print:h-297mm print:w-210mm print:p-4 print:border print:border-gray-400">
+          <div key={0} className="print:mb-4">
+            <div className="bg-gray-200 border border-gray-400 p-4 mb-4 h-32">
+              Div 1
+            </div>
+          </div>
+          <div key={1} className="print:mb-4">
+            <div className="bg-gray-200 border border-gray-400 p-4 mb-4 h-32">
+              Div 1
+            </div>
+          </div>
+          <div key={2} className="print:mb-4">
+            <div className="bg-gray-200 border border-gray-400 p-4 mb-4 h-32">
+              Div 1
+            </div>
+          </div>
+        </div>
+      </PrintService>
     </div>
   );
 }
-
-interface MiSelectProps {
-  value: number;
-}
-
-const MiSelect: FC<MiSelectProps> = ({ value }) => {
-  const [valor, setValor] = useState<number>(value);
-
-  const categorias: ICategoria[] = [
-    { id: 0, nombre: "Categoria 1" },
-    { id: 1, nombre: "Categoria 2" },
-    { id: 2, nombre: "Categoria 3" },
-  ];
-
-  return (
-    <select
-      className="select select-bordered w-full max-w-xs"
-      value={valor}
-      defaultValue={valor}
-      onChange={(e) => setValor(Number(e.target.value))}
-    >
-      {categorias.map((categoria, index) => {
-        return (
-          <option key={index} value={categoria.id}>
-            {categoria.nombre}
-          </option>
-        );
-      })}
-    </select>
-  );
-};
