@@ -16,7 +16,8 @@ const EtiquetasPage = async () => {
             {paquetes.map((paquete: any) => {
               console.log(paquete);
               return (
-                <EtiquetaImprimibleA4
+                <EtiquetaImprimibleA4 
+                  key={paquete.id}
                   producto={paquete.tipo.catalogo}
                   descripcion={paquete.tipo.descripcion}
                   calidad={paquete.calidad.nombre}
