@@ -12,7 +12,7 @@ const EtiquetasPage = async () => {
       <br />
       <div className="h-full w-full">
         <PrintService>
-          <div className="flex flex-col justify-between h-screen p-4">
+          <div className="paginaA4">
             {paquetes.map((paquete: any) => {
               console.log(paquete);
               return (

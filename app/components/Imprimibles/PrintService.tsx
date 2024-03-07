@@ -18,8 +18,8 @@ const PrintService = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div>
-      <div id="printableArea">{children}</div>
       <button onClick={handlePrint} className="btn btn-success">Imprimir</button>
+      <div id="printableArea">{children}</div>
     </div>
   );
 };
