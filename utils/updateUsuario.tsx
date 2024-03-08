@@ -1,7 +1,7 @@
 import { IUser } from "@/types/tipos";
 
 export const updateUsuario = async (usuario: IUser | undefined) => {
-    const url = `http://localhost:3000/api/users/update`;
+    const url = `${process.env.siteUrl}/api/users/update`;
     try {
       const res = await fetch(url, {
         method: "PUT",
