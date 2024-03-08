@@ -19,7 +19,8 @@
     "react-csv-downloader": "^3.1.0",
     "react-dom": "^18",
     "react-icons": "^4.12.0",
-    "react-loader-spinner": "^5.4.5"
+    "react-loader-spinner": "^5.4.5",
+    "sharp": "^0.33.2"
   },
   "devDependencies": {
     "@types/node": "^20",

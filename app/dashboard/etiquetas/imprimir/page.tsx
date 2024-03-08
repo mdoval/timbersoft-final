@@ -12,11 +12,11 @@ const EtiquetasPage = async () => {
       <br />
       <div className="h-full w-full">
         <PrintService>
-          <div className="paginaA4">
+          <div className="paginaA4 border shadow-lg bg-white">
             {paquetes.map((paquete: any) => {
-              console.log(paquete);
-              return (
-                <EtiquetaImprimibleA4
+              //console.log(paquete);
+              return (                
+                <EtiquetaImprimibleA4 key={paquete}
                   producto={paquete.tipo.catalogo}
                   descripcion={paquete.tipo.descripcion}
                   calidad={paquete.calidad.nombre}

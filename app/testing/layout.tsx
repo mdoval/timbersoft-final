@@ -19,7 +19,8 @@ export default function TestingLayout({
         <div className="dashboard_topbar">
           <TopBar />
         </div>
-        <div className="dashboard_children">{children}</div>
+        {/* <div className="dashboard_children">{children}</div>*/}
+        <div className="bg-gray-300 flex flex-col items-center">{children}</div>
       </div>
     </section>
   );

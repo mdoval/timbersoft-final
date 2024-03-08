@@ -1,5 +1,5 @@
 export const uploadPhoto = async (data: FormData | undefined) => {
-    const url = `http://localhost:3000/api/users/uploadphoto`;
+    const url = `${process.env.siteUrl}/api/users/uploadphoto`;
     try {
         const res = await fetch(url, {
             method: 'POST',
