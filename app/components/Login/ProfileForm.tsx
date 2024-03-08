@@ -68,6 +68,7 @@ const ProfileForm: FC<Props> = ({ user }) => {
       data.set('id',user.id)
 
       const res = await uploadPhoto(data)
+      console.log(res)
       router.push("/dashboard")
       router.refresh()
       // handle the error
