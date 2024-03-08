@@ -30,7 +30,7 @@ export async function POST(req: Request) {
   try {
     const newUsuario = await prisma.user.update({
       where: { id: parseInt(userId) },
-      data: { avatar: `http://localhost:3000/images/${fileName}`},
+      data: { avatar: `/images/${fileName}`},
     });
     return NextResponse.json(newUsuario);
   } catch (error) {

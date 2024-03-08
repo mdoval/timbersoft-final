@@ -6,8 +6,8 @@ import React, { FC, useState } from "react";
 import Modal from "@/app/components/Modal/Modal";
 import passwordChange from "@/utils/passwordChange";
 import uploadPhoto from "@/utils/uploadPhoto";
-import { useSession } from "next-auth/react";
 import { IUser } from "@/types/tipos";
+import Image from "next/image";
 
 interface Props {
   user: any;
@@ -22,6 +22,8 @@ const ProfileForm: FC<Props> = ({ user }) => {
   const [pass2, setPass2] = useState<string>("");
   const [errorPass, setErrorPass] = useState<string>("");
   const [file, setFile] = useState<File>();
+  const imgUrl = `${process.env.siteUrl}${user.avatar}`
+  //console.log(imgUrl)
 
   const handleUpdate = async () => {
     try {
@@ -81,7 +83,7 @@ const ProfileForm: FC<Props> = ({ user }) => {
       <br />
       <div className="avatar m-auto flex flex-col">
         <div className="w-24 rounded-full">
-          <img src={user.avatar} />
+          <Image src={imgUrl} alt='Imagen' width={50} height={150} />
         </div>
         <button className="text-blue-600" onClick={() => setHiddenFoto(!hiddenFoto)}>Cambiar Foto</button>
       </div>
