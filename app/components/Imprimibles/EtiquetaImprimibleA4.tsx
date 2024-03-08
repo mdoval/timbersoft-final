@@ -20,7 +20,7 @@ const EtiquetaImprimibleA4: FC<EtiquetasProps> = ({
   piezas,
 }) => {
   return (
-    <div className="h-1/3border border-black m-1">
+    <div className="h-1/3 border border-black m-1">
       <div className="w-full h-1/2 flex">
         <div className="border border-black p-2 w-60">
           <Image
